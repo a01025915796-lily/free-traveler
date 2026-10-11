@@ -247,39 +247,39 @@
         "COMP-SCR001-MATES-CURATOR",
         "PAGE-SCR001"
       ],
-      "status": "pending",
+      "status": "completed",
       "checkpoint_required": true,
       "checkpoint_type": "preview",
-      "checkpoint_result": null,
-      "checkpoint_at": null,
+      "checkpoint_result": "approved",
+      "checkpoint_at": "2026-10-11T21:49:16+09:00",
       "prerequisites": null,
-      "started_at": null,
-      "finished_at": null,
+      "started_at": "2026-10-11T21:36:02+09:00",
+      "finished_at": "2026-10-11T21:49:16+09:00",
       "blocked_reason": null,
       "tasks": {
         "COMP-SCR001-DESTINATION-DRAWER": {
-          "status": "pending",
-          "finished_at": null,
-          "verify": null,
-          "note": null
+          "status": "completed",
+          "finished_at": "2026-10-11T21:37:11+09:00",
+          "verify": "npm run lint PASS · npm run typecheck PASS · 렌더·Esc·뒤로 가기·공유는 PAGE-SCR001 조립 후 확인: 보류 — PAGE-SCR001(이 Wave Preview)·E2E-PUBLIC-SMOKE(W12) · Diff: src/components/home/DestinationDrawer.tsx",
+          "note": "?dest 구동, 잘못된 slug는 Toast 후 URL 정리. 해외는 '국가별 주의사항 보기'로 ?safety 추가 — 이때 이 Drawer는 숨고 SafetyDrawer가 '돌아가기'를 표시. 다음 행동 링크는 탭 이름만(/travel-tools?tab=flight|hotel), 동행은 /mates?country=코드"
         },
         "COMP-SCR001-SAFETY": {
-          "status": "pending",
-          "finished_at": null,
-          "verify": null,
-          "note": null
+          "status": "completed",
+          "finished_at": "2026-10-11T21:38:15+09:00",
+          "verify": "npm run lint PASS · npm run typecheck PASS · 렌더·tel 링크·Drawer 전환은 PAGE-SCR001 조립 후 확인: 보류 — PAGE-SCR001(이 Wave Preview)·E2E-PUBLIC-SMOKE(W12) · Diff: src/components/safety/* 4개",
+          "note": "Drawer 순서: 중대 경보 → stale 경고 → 공식 판단 비대체 고지 → 경보 범위 → 7개 카테고리 + 긴급연락처(tel:) → 출처·확인일·편집자·외교부 원문. 여행지에서 왔으면 '← {여행지} 상세로 돌아가기'. 안전 데이터는 외교부 원문 대조 전 초안(Deferred #5)"
         },
         "COMP-SCR001-MATES-CURATOR": {
-          "status": "pending",
-          "finished_at": null,
-          "verify": null,
-          "note": null
+          "status": "completed",
+          "finished_at": "2026-10-11T21:39:07+09:00",
+          "verify": "npm run lint PASS · npm run typecheck PASS · 원격 조회·상태 전환 렌더는 PAGE-SCR001 조립 후 확인: 보류 — PAGE-SCR001(이 Wave Preview)·E2E-PUBLIC-SMOKE(W12) · Diff: src/components/home/RecentMatesSection.tsx, src/components/mates/MateCard.tsx, src/components/home/CuratorTeaser.tsx, src/components/ui/StatTile.tsx",
+          "note": "최근 동행글: 브라우저 클라이언트로 모집중 3개 조회(RLS), Loading Skeleton 3·Error Alert(다시 시도·동행 찾기)·Empty(3단계+CTA). 작성자는 닉네임·연령대만. 지역명은 여행지 slug면 이름, 아니면 slug(지역 목록은 SCR-003 Task)"
         },
         "PAGE-SCR001": {
-          "status": "pending",
-          "finished_at": null,
-          "verify": null,
-          "note": null
+          "status": "completed",
+          "finished_at": "2026-10-11T21:43:00+09:00",
+          "verify": "npm run lint PASS · npm run typecheck PASS · npm run build PASS(/ ◐ 부분 prerender) · next start HTML 검사: 7개 영역 id 계약 순서, Starter 흔적 0, 추천 카드 12·테마 6·안전 6·Stat 2, WebSite JSON-LD, 기본 title·canonical·OG, ?dest=kyoto 메타, ?q= 검색 결과 모드 · Chromium 수동 확인(스크립트, scratchpad): 1440 첫 화면에 ② 제목 보임, Drawer 열림·제목 포커스·Esc 닫힘, 여행지→안전정보 전환·돌아가기·Back, 검색·결과 없음·잘못된 dest Toast, 390/320 가로 넘침 0, 페이지 오류 0(404는 미구현 Route prefetch 4건) · E2E-PUBLIC-SMOKE spec 없음: 보류 — E2E-PUBLIC-SMOKE(W12)에서 검증 · Preview 승인 대기",
+          "note": "안전정보 영역은 현재 시각(stale)에 의존해 connection()으로 요청 시점 렌더(Cache Components). JSON-LD는 dangerouslySetInnerHTML 대신 script 텍스트 자식 + '<' 이스케이프. 섹션 id는 페이지의 감싸는 div에 부여"
         }
       }
     },

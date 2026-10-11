@@ -3,7 +3,7 @@
 | 항목 | 내용 |
 |---|---|
 | 기준일 | 2026-10-11 |
-| 마지막 갱신 | 2026-10-11 — W04 completed (`/run-wave W04`) |
+| 마지막 갱신 | 2026-10-11 — W05 completed (SCR-001 Preview 승인) |
 | 갱신 주체 | `/run-wave`가 Wave 실행·Checkpoint·resume이 끝날 때 갱신한다. `/release-check --record`가 FINAL을 갱신한다. 사람이 고쳐도 되지만, Task·Wave 상태의 정본은 `TASKS/WAVE_STATE.json`이다 |
 
 이 문서는 프로젝트 현재 상태를 한 장으로 요약한다. 다른 문서와 다르면 다음 정본을 따른다.
@@ -18,23 +18,23 @@
 | Harness Schema | `traveler-screen-route-v1` (`design-reference/SCREEN_ROUTE_CONTRACT.json`) |
 | Design Version | D-001 `1.0.0` LOCKED (2026-10-09), `design-reference/D-001/DESIGN.md` sha256 `6282ae1e…fcec4` |
 | Scope Mode | IMPLEMENT/EXCLUDED — 요구사항 114건 중 IMPLEMENT 88, EXCLUDED 26 (`docs/PROJECT_SCOPE.md` §9·§10, DEC-014) |
-| Current Wave | W04 completed. 다음 Wave는 W05(SCR-001 메인 2/2, 4개 — PAGE-SCR001 포함, PREVIEW Checkpoint) |
+| Current Wave | W05 completed(SCR-001 승인). 다음 Wave는 W06(SCR-002 대표 소개, 3개, PREVIEW) |
 | Current Task | 없음 |
-| Completed Tasks | 20 / 61 (W01 1, W02 7, W03 7, W04 5) |
+| Completed Tasks | 24 / 61 (W01 1, W02 7, W03 7, W04 5, W05 4) |
 | Blocked Tasks | 0 (Task 단위 `blocked` 기록 없음). 착수 차단 6건은 §4 참고(W03부터 필요) |
 | Latest CI | 없음 — `.github/workflows/ci.yml` 미작성(SETUP-CI, W11). Git 원격 `origin` 연결됨(github.com/a01025915796-lily/free-traveler). 로컬: lint·typecheck·build PASS(2026-10-11, W01) |
 | Supabase State | 원격 테스트 프로젝트 free-traveler(ap-northeast-1) link 완료(DEC-019). 마이그레이션 0001(6개 테이블)·0002(RLS, 정책 18개) 적용, seed 적용(app_settings 2건). 비로그인 API 검사 12항목 기대대로. 테스트 계정 3개 미생성(`docs/checks/TEST_ACCOUNTS.md` 절차, W11 전) |
 | Vercel Preview URL | 없음 — Vercel 프로젝트 미연결(`.vercel` 없음). 연결 전 Page Owner Wave는 로컬 `npm run dev`로 확인 |
 | Screen Checkpoints | 모두 PENDING (§2) |
-| Playwright State | (W02) UI Kit·Layout은 브라우저 동작 검증을 E2E로 보류. `@playwright/test` 1.64·`@axe-core/playwright` 설치, `playwright.config.ts`(chromium 프로젝트 하나, Desktop 1440×900, Mobile 390×844는 `test.use`) 작성. 브라우저 바이너리는 미설치(`npx playwright install chromium` 필요). spec 3개는 W12 E2E Task가 만든다(핵심 흐름 FLOW-01~07). Chromium Smoke만 (DEC-009) |
-| Deferred Items | 6건 미결 (§3, #2는 DEC-016으로 해소) |
+| Playwright State | `@playwright/test` 1.64, Chromium headless 설치됨(W05 확인용). `playwright.config.ts`(chromium 하나). spec 3개는 W12 E2E Task가 만든다(FLOW-01~07). Chromium Smoke만(DEC-009) |
+| Deferred Items | 7건 미결 (§3, #2는 DEC-016으로 해소) |
 | Next Action | §5 |
 
 ## 2. Screen Checkpoints
 
 | Checkpoint | Route | Page Owner | Wave | 확인 방법 | 상태 | 승인일 |
 |---|---|---|---|---|---|---|
-| SCR-001 | `/` | PAGE-SCR001 | W05 | Vercel Preview(연결 전에는 로컬 dev), Desktop 1440·Mobile 390 | PENDING | - |
+| SCR-001 | `/` | PAGE-SCR001 | W05 | Vercel Preview(연결 전에는 로컬 dev), Desktop 1440·Mobile 390 | APPROVED | 2026-10-11 |
 | SCR-002 | `/about` | PAGE-SCR002 | W06 | Vercel Preview(연결 전에는 로컬 dev), Desktop 1440·Mobile 390 | PENDING | - |
 | SCR-003 | `/travel-tools` | PAGE-SCR003 | W08 | Vercel Preview(연결 전에는 로컬 dev), Desktop 1440·Mobile 390 | PENDING | - |
 | SCR-004 | `/mates` | PAGE-SCR004 | W09 | Vercel Preview(연결 전에는 로컬 dev), Desktop 1440·Mobile 390 | PENDING | - |
@@ -53,6 +53,7 @@
 | 4 | `docs/PROJECT_SCOPE.md` §3·§8에 예전 Route 이름(`/plan`, `/auth`, `/my`)이 남아 있음 | 혼동 가능. 06·계약이 우선하므로 구현 영향 없음 | 문서 정리 여부를 사용자가 정한다 | 선택 |
 | 5 | `src/data/safety.ts` 경보 단계·적용 범위·재외공관 링크가 작성자 지식 기반 초안(외교부 페이지 자동 대조 불가) | 잘못된 경보 표시 위험(RAC 안전정보) | 게시 전 외교부 해외안전여행 원문과 대조하고 `verifiedAt` 갱신 | 배포(W13) 전 |
 | 6 | `src/data/curator.ts` 초안 문구(여행 이유·Timeline·기억 문장)와 빈 문의·SNS 값 (`CURATOR_CONTENT_CONFIRMED=false`) | 대표 확인 전 문구 | 대표(사용자)가 문구 확인·SNS 값 제공 | 배포 전 |
+| 8 | 여행지 사진 품질 개선 — SCR-001 Preview에서 사용자가 "매력적이지 않은 사진이 많다"고 지적. 대상 여행지는 수정할 때 함께 정한다 | 메인·Drawer 첫인상 저하 | 사용자와 여행지별로 다시 고르기(DEC-018 범위 Commons PD·CC0 또는 라이선스 확인된 출처로 변경 검토). `src/data/destinations.ts`·`curator.ts` 이미지 교체, 출처 정책 바뀌면 DEC 추가 | 배포(W13) 전 |
 | 7 | 공통 Header의 회원 아바타·닉네임 표시(04 §4.1)를 맡은 Task가 없음 | Header는 "계정" 링크만 표시 | 회원 표시가 필요하면 Task 추가 결정 | W10 전 |
 
 ## 4. 착수 차단 (`docs/ARCHITECTURE.md` §12)
@@ -70,9 +71,9 @@ Wave 번호는 `TASKS/WAVE_PLAN.md`(build_waves.py 생성) 기준이다. W01~W02
 
 ## 5. Next Action
 
-1. (권장) W04 변경을 Commit한다.
-2. `/run-wave W05` — SCR-001 Drawer·안전정보·동행·Page Owner 조립 후 PREVIEW Checkpoint에서 사람이 `/` 화면(Desktop 1440·Mobile 390)을 확인한다. Vercel 미연결이므로 로컬 `npm run dev`로 확인.
-3. W11 전까지 테스트 계정 3개를 만든다(`docs/checks/TEST_ACCOUNTS.md`).
+1. `/run-wave W06` (SCR-002 대표 소개, Preview 대기에서 멈춤).
+2. Deferred #8 사진 교체는 사용자와 여행지를 함께 보며 진행.
+3. W11 전까지 테스트 계정 3개 생성(`docs/checks/TEST_ACCOUNTS.md`).
 
 ## 6. 변경 이력
 
@@ -84,5 +85,7 @@ Wave 번호는 `TASKS/WAVE_PLAN.md`(build_waves.py 생성) 기준이다. W01~W02
 | 2026-10-11 | SETUP-PROJECT Expected Files에 `package-lock.json`·`.gitignore` 추가. W01 completed(SETUP-PROJECT) | `/run-wave W01` |
 | 2026-10-11 | DEC-019 원격 Supabase(A안) 반영, Deferred #1 해소 | Claude (사용자 요청) |
 | 2026-10-11 | W03 completed(7 Task). 원격 DB에 스키마·RLS·시드 적용 | `/run-wave W03` |
+| 2026-10-11 | W05 Task 4개 완료, SCR-001 PREVIEW 대기 | `/run-wave W05` |
+| 2026-10-11 | SCR-001 Preview 승인 → W05 completed. Deferred #8(사진 품질) 추가 | 사용자 승인, `/run-wave resume` |
 | 2026-10-11 | W04 completed(5 Task). 검색 query 키를 계약(days·kind)에 맞춤, 해외 추천 6곳 바르셀로나로 정정 | `/run-wave W04` |
 | 2026-10-11 | W02 completed(7 Task). DEC-018(Commons PD·CC0 사진), DATA-DESTINATIONS Expected Files에 `next.config.ts` 추가. Deferred #5~#7 추가 | `/run-wave W02` |
