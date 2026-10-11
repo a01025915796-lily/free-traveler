@@ -18,7 +18,7 @@ export const THEMES: readonly Theme[] = [
 
 /** Main page recommendations: 6 domestic + 6 overseas (by slug). */
 export const FEATURED_DOMESTIC = ["seoul", "busan", "jeju", "gyeongju", "gangneung", "jeonju"] as const;
-export const FEATURED_OVERSEAS = ["tokyo", "taipei", "da-nang", "bangkok", "paris", "sydney"] as const;
+export const FEATURED_OVERSEAS = ["tokyo", "taipei", "da-nang", "paris", "barcelona", "sydney"] as const;
 
 export const DESTINATIONS: readonly Destination[] = [
   {

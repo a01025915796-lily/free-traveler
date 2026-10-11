@@ -95,7 +95,7 @@
           "status": "completed",
           "finished_at": "2026-10-11T20:57:43+09:00",
           "verify": "npm run lint PASS · npm run typecheck PASS · npm run build PASS · 생성 시 검사: 40곳(국내 10, 해외 15개국 30), 소개 300자+·명소 5+·음식 3+·에티켓 3+ 전부 충족 · 사진 URL 40개 HTTP 200 · 출처 URL 접속 확인(정부 관광청 일부는 봇 차단 403) · Unit 보류 — UNIT-CONTENT-DATA에서 검증 · Diff: Expected Files 4개",
-          "note": "사진은 Wikimedia Commons PD·CC0만(DEC-018, 사용자 선택). Commons 썸네일 호스트가 thumb.wikimedia.org라 upload·thumb 두 호스트를 next.config.ts에 추가(Task 문서·DEC-018 반영). 추천 국내 6·해외 6, 테마 6종 정의. 콘텐츠(예산·교통 등)는 편집 초안이며 게시 전 사람 검수 권장"
+          "note": "사진은 Wikimedia Commons PD·CC0만(DEC-018, 사용자 선택). Commons 썸네일 호스트가 thumb.wikimedia.org라 upload·thumb 두 호스트를 next.config.ts에 추가(Task 문서·DEC-018 반영). 추천 국내 6·해외 6, 테마 6종 정의. 콘텐츠(예산·교통 등)는 편집 초안이며 게시 전 사람 검수 권장 · 재수정(W04 COMP-SCR001-SEARCH 중 발견): 해외 추천 6곳을 04 §6.1대로 bangkok→barcelona"
         },
         "DATA-SAFETY": {
           "status": "completed",
@@ -195,45 +195,45 @@
         "COMP-SCR001-SEARCH",
         "COMP-SCR001-DESTINATIONS"
       ],
-      "status": "pending",
+      "status": "completed",
       "checkpoint_required": false,
       "checkpoint_type": null,
       "checkpoint_result": null,
       "checkpoint_at": null,
       "prerequisites": null,
-      "started_at": null,
-      "finished_at": null,
+      "started_at": "2026-10-11T21:28:56+09:00",
+      "finished_at": "2026-10-11T21:34:59+09:00",
       "blocked_reason": null,
       "tasks": {
         "LOGIC-SEARCH-FILTER": {
-          "status": "pending",
-          "finished_at": null,
-          "verify": null,
-          "note": null
+          "status": "completed",
+          "finished_at": "2026-10-11T21:30:05+09:00",
+          "verify": "npm run lint PASS · npm run typecheck PASS · 임시 vitest 10건 PASS 후 임시 파일 삭제(잘못된 값 무시, 허용 키만 직렬화·왕복, 국내10/해외30, 국가명·테마 키워드, 결과 없음, 관련 여행지 ≤6·현재 제외·같은 국가 우선, scope=all 검색 모드, 강조 분할) · 정식 Unit 보류 — UNIT-SEARCH-STALE(W11) · Diff: src/lib/destinations/search.ts",
+          "note": "허용 query: q·scope·country·city·season·theme·duration·fav. 안전정보 결과는 키워드·국가·범위 검색일 때만(국내 범위 제외) · 재수정(COMP-SCR001-SEARCH 중 발견): UI_CONTRACT §2 query 키에 맞춰 duration→days, kind(all/destination/safety) 추가. 재검증 lint·typecheck·임시 vitest 5건 PASS"
         },
         "LOGIC-SAFETY-STALE": {
-          "status": "pending",
-          "finished_at": null,
-          "verify": null,
-          "note": null
+          "status": "completed",
+          "finished_at": "2026-10-11T21:30:40+09:00",
+          "verify": "npm run lint PASS · npm run typecheck PASS · 임시 vitest 3건 PASS 후 삭제(7일 경계: 7일째 00:00 KST fresh·1초 후 stale, 잘못된 날짜 stale, 태국 중대 경보 정렬, 일본 0건, 톤·라벨·날짜 표기) · 정식 Unit 보류 — UNIT-SEARCH-STALE(W11) · Diff: src/lib/safety/stale.ts",
+          "note": "verifiedAt은 KST 날짜 00:00 기준. 배치 작업 없음(렌더링 시 계산)"
         },
         "LOGIC-FAVORITES-SHARE": {
-          "status": "pending",
-          "finished_at": null,
-          "verify": null,
-          "note": null
+          "status": "completed",
+          "finished_at": "2026-10-11T21:31:26+09:00",
+          "verify": "npm run lint PASS · npm run typecheck PASS · 임시 vitest 8건 PASS 후 삭제(중복 방지, 토글, 저장소 예외·null 시 빈 목록, 잘못된 JSON·slug 아닌 값 무시, 공유 실패→복사, 공유 취소, 둘 다 불가→failed, 절대 URL) · 정식 Unit 보류 — UNIT-OUTBOUND-FAVORITES(W11) · Diff: src/lib/favorites.ts, src/lib/share.ts",
+          "note": "localStorage 키 ft:favorites:v1, slug 배열만. useSyncExternalStore용 subscribe/snapshot 제공"
         },
         "COMP-SCR001-SEARCH": {
-          "status": "pending",
-          "finished_at": null,
-          "verify": null,
-          "note": null
+          "status": "completed",
+          "finished_at": "2026-10-11T21:33:44+09:00",
+          "verify": "npm run lint PASS · npm run typecheck PASS · 화면 렌더·상호작용은 페이지 조립 전이라 미실행: 보류 — PAGE-SCR001(W05 Preview)·E2E-PUBLIC-SMOKE(W12)에서 검증 · Diff: src/components/home/SearchHero.tsx, SearchBar.tsx, SearchResultsSection.tsx, FilterBar.tsx",
+          "note": "검색어·필터는 URL query로만(허용 키만), 서버 전송 없음. SearchResultsSection은 자체 Suspense로 useSearchParams 감쌈. 결과 카드는 이 Task 안에서 그림(DESTINATIONS Task 비의존). 모바일 필터는 Drawer(전체 화면 Sheet). Hero 사진은 제주 데이터 사진(priority) · FilterBar Chip 묶음 role radiogroup→group 수정(Chip은 aria-pressed 토글)"
         },
         "COMP-SCR001-DESTINATIONS": {
-          "status": "pending",
-          "finished_at": null,
-          "verify": null,
-          "note": null
+          "status": "completed",
+          "finished_at": "2026-10-11T21:34:59+09:00",
+          "verify": "npm run lint PASS · npm run typecheck PASS · npm run build PASS · 화면 렌더·즐겨찾기 토글·Toast는 페이지 조립 전이라 미실행: 보류 — PAGE-SCR001(W05 Preview)·E2E-PUBLIC-SMOKE(W12)에서 검증 · Diff: src/components/home/DestinationCard.tsx, DestinationGrid.tsx, DestinationBento.tsx, ThemeTileGrid.tsx",
+          "note": "Card 전체는 stretched link(?dest=slug), 즐겨찾기 버튼(44px, aria-pressed)은 링크 위 레이어. Bento 큰 Card는 도쿄·다낭(04 §6.1). FavoriteButton은 DestinationCard.tsx에서 export(Drawer에서 재사용 가능)"
         }
       }
     },
