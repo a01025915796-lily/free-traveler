@@ -2,7 +2,7 @@
 
 | 항목 | 내용 |
 |---|---|
-| 생성 | 2026-10-11T19:07:34+09:00 — `python3 scripts/build_waves.py` (직접 고치지 않는다. Task를 바꾸면 Script를 다시 실행한다) |
+| 생성 | 2026-10-11T20:18:46+09:00 — `python3 scripts/build_waves.py` (직접 고치지 않는다. Task를 바꾸면 Script를 다시 실행한다) |
 | 입력 | `TASKS/TASK_MANIFEST.csv`, Task 상세 파일, `design-reference/SCREEN_ROUTE_CONTRACT.json` |
 | 진행 상태 | `TASKS/WAVE_STATE.json` |
 | 실행 명령 | `/run-wave <Wave ID>` (`.claude/commands/run-wave.md`) |

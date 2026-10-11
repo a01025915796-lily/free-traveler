@@ -3,7 +3,7 @@
 | 항목 | 내용 |
 |---|---|
 | 기준일 | 2026-10-11 |
-| 마지막 갱신 | 2026-10-11 — 초기 작성 (구현 착수 전) |
+| 마지막 갱신 | 2026-10-11 — W01 completed (`/run-wave W01`) |
 | 갱신 주체 | `/run-wave`가 Wave 실행·Checkpoint·resume이 끝날 때 갱신한다. `/release-check --record`가 FINAL을 갱신한다. 사람이 고쳐도 되지만, Task·Wave 상태의 정본은 `TASKS/WAVE_STATE.json`이다 |
 
 이 문서는 프로젝트 현재 상태를 한 장으로 요약한다. 다른 문서와 다르면 다음 정본을 따른다.
@@ -18,15 +18,15 @@
 | Harness Schema | `traveler-screen-route-v1` (`design-reference/SCREEN_ROUTE_CONTRACT.json`) |
 | Design Version | D-001 `1.0.0` LOCKED (2026-10-09), `design-reference/D-001/DESIGN.md` sha256 `6282ae1e…fcec4` |
 | Scope Mode | IMPLEMENT/EXCLUDED — 요구사항 114건 중 IMPLEMENT 88, EXCLUDED 26 (`docs/PROJECT_SCOPE.md` §9·§10, DEC-014) |
-| Current Wave | 없음 — 아직 시작한 Wave 없음. 다음 Wave는 W01 |
+| Current Wave | W01 completed. 다음 Wave는 W02(공통 UI·정적 데이터·Layout 7개) |
 | Current Task | 없음 |
-| Completed Tasks | 0 / 61 |
+| Completed Tasks | 1 / 61 (SETUP-PROJECT) |
 | Blocked Tasks | 0 (Task 단위 `blocked` 기록 없음). 착수 차단 6건은 §4 참고(W03부터 필요) |
-| Latest CI | 없음 — `.github/workflows/ci.yml` 미작성(SETUP-CI, W11), Git 원격 없음 |
-| Supabase State | 미구성 — Supabase 프로젝트·`.env.local` 없음, `supabase/` 디렉터리 없음, 마이그레이션 미작성. Supabase CLI는 설치됨, Docker 없음 |
+| Latest CI | 없음 — `.github/workflows/ci.yml` 미작성(SETUP-CI, W11). Git 원격 `origin` 연결됨(github.com/a01025915796-lily/free-traveler). 로컬: lint·typecheck·build PASS(2026-10-11, W01) |
+| Supabase State | 미구성 — `@supabase/supabase-js`·`@supabase/ssr` 설치됨. `.env.local`은 있으나 비어 있음, Supabase 프로젝트 미연결, `supabase/` 디렉터리 없음, 마이그레이션 미작성. Supabase CLI는 설치됨, Docker 없음 |
 | Vercel Preview URL | 없음 — Vercel 프로젝트 미연결(`.vercel` 없음). 연결 전 Page Owner Wave는 로컬 `npm run dev`로 확인 |
 | Screen Checkpoints | 모두 PENDING (§2) |
-| Playwright State | 미설치·spec 없음 — `playwright.config.ts`는 SETUP-PROJECT(W01), spec 3개는 W12 E2E Task가 만든다(핵심 흐름 FLOW-01~07). Chromium Smoke만 (DEC-009) |
+| Playwright State | `@playwright/test` 1.64·`@axe-core/playwright` 설치, `playwright.config.ts`(chromium 프로젝트 하나, Desktop 1440×900, Mobile 390×844는 `test.use`) 작성. 브라우저 바이너리는 미설치(`npx playwright install chromium` 필요). spec 3개는 W12 E2E Task가 만든다(핵심 흐름 FLOW-01~07). Chromium Smoke만 (DEC-009) |
 | Deferred Items | 3건 미결 (§3, #2는 DEC-016으로 해소) |
 | Next Action | §5 |
 
@@ -62,14 +62,14 @@ Wave 번호는 `TASKS/WAVE_PLAN.md`(build_waves.py 생성) 기준이다. W01~W02
 | 2 | 테스트 계정 3개(`E2E_USER_A_*`, `E2E_USER_B_*`, `E2E_ADMIN_*`) | 없음 | 사용자 |
 | 3 | Docker 또는 원격 테스트 프로젝트 | Docker 없음 | 사용자 (Deferred #1과 함께 결정) |
 | 4 | `supabase/config.toml` 배정 | 미배정 | 사용자 결정 → Task 수정 |
-| 5 | Git 원격 저장소, `gh auth login` | 원격 없음, 미로그인 | 사용자 |
+| 5 | Git 원격 저장소, `gh auth login` | 원격 연결됨, `gh` 로그인 미확인 | 사용자 |
 | 6 | Vercel 프로젝트 연결 | 미연결 | 사용자 |
 
 ## 5. Next Action
 
-1. (권장) 지금까지 만든 하네스 문서(`.claude/`, `CLAUDE.md`, `TASKS/`, `docs/`, `design-reference/`, `scripts/`)를 사용자가 Commit한다. 하지 않아도 W01은 진행할 수 있다(prepare-task에서는 WARN).
-2. `/run-wave dry-run W01`로 실행 계획을 확인한다.
-3. `/run-wave W01`을 실행한다(SETUP-PROJECT 1개). 이어서 W02(공통 UI·정적 데이터·Layout 7개).
+1. (권장) W01 변경(설정 파일·`package-lock.json`·Task 문서)을 사용자가 Commit한다. 하지 않아도 W02는 진행할 수 있다.
+2. `/run-wave dry-run W02`로 실행 계획을 확인한다.
+3. `/run-wave W02`를 실행한다(공통 UI·정적 데이터·Layout 7개).
 4. W03(Supabase) 전에 §4 착수 차단 #1·#3·#4와 Deferred #1을 해결한다.
 
 ## 6. 변경 이력
@@ -79,3 +79,4 @@ Wave 번호는 `TASKS/WAVE_PLAN.md`(build_waves.py 생성) 기준이다. W01~W02
 | 2026-10-11 | 초기 작성. 모든 Wave·Task PENDING, Screen Checkpoint 6개 PENDING | Claude (사용자 요청) |
 | 2026-10-11 | Task 감사 보완(DEC-016). Deferred #2 해소 | Claude (사용자 요청) |
 | 2026-10-11 | `scripts/build_waves.py`로 Wave 재생성(13개, DEC-017). Checkpoint Wave 번호·착수 차단 시점 갱신 | Claude (사용자 요청) |
+| 2026-10-11 | SETUP-PROJECT Expected Files에 `package-lock.json`·`.gitignore` 추가. W01 completed(SETUP-PROJECT) | `/run-wave W01` |

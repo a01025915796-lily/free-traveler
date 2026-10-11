@@ -1,6 +1,6 @@
 {
   "schema_version": "traveler-wave-state-v2",
-  "generated_at": "2026-10-11T19:07:34+09:00",
+  "generated_at": "2026-10-11T20:18:46+09:00",
   "generated_by": "scripts/build_waves.py",
   "status_values": {
     "wave": [
@@ -32,21 +32,21 @@
       "task_ids": [
         "SETUP-PROJECT"
       ],
-      "status": "pending",
+      "status": "completed",
       "checkpoint_required": false,
       "checkpoint_type": null,
       "checkpoint_result": null,
       "checkpoint_at": null,
       "prerequisites": null,
-      "started_at": null,
-      "finished_at": null,
+      "started_at": "2026-10-11T20:18:58+09:00",
+      "finished_at": "2026-10-11T20:21:04+09:00",
       "blocked_reason": null,
       "tasks": {
         "SETUP-PROJECT": {
-          "status": "pending",
-          "finished_at": null,
-          "verify": null,
-          "note": null
+          "status": "completed",
+          "finished_at": "2026-10-11T20:21:04+09:00",
+          "verify": "npm install PASS(@types/node ^20→^24: vitest 5 peer 요구) · npm run lint PASS(exit 0) · npm run typecheck PASS(exit 0) · npm run build PASS(exit 0) · Unit 보류 — 테스트 파일 없음(Unit Test Task에서 검증) · Playwright 미실행(Setup Task, DEC-015) · Diff: Expected Files 안(tsconfig.json은 변경 불필요) + 하네스 기록 파일",
+          "note": "기본 외부 URL 상수 위치는 src/lib/outbound.ts(LOGIC-OUTBOUND-URL)로 확정. 사진 호스트: images.unsplash.com, images.pexels.com, tong.visitkorea.or.kr. npm audit: 운영 의존성 0건, 개발 의존성 high 5건(braces 경유)"
         }
       }
     },

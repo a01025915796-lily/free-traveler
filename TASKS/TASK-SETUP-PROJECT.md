@@ -4,7 +4,7 @@
 
 | Seq | Task ID | 제목 | Category | Implementation Status | Requirement Ref | Screen | Route | Page Entry | Depends On | Expected Files | Functional AC | Visual AC | Security/Privacy AC | Verify | Priority |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
-| 1 | SETUP-PROJECT | 패키지·스크립트·설정 초기화 | Setup | IMPLEMENT | REQ-NF-016, REQ-NF-031, REQ-FUNC-016, REQ-FUNC-024 | 없음 | - | - | - | `package.json`, `tsconfig.json`, `next.config.ts`, `.env.example`, `vitest.config.ts`, `playwright.config.ts` | 1) `@supabase/supabase-js`, `@supabase/ssr`, `vitest`, `@playwright/test`, `@axe-core/playwright` 설치<br>2) 스크립트 `typecheck`(`tsc --noEmit`), `test:unit`(`vitest run`), `test:e2e`(`playwright test`) 추가<br>3) Playwright는 Chromium 프로젝트 하나만 정의(Desktop 1440×900, Mobile 390×844)<br>4) `.env.example`에 `NEXT_PUBLIC_SITE_URL`, `NEXT_PUBLIC_SUPABASE_URL`, `NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY`, E2E 테스트 계정 변수 기재<br>5) `next.config.ts` `images.remotePatterns`에 사용할 사진 호스트 등록<br>6) 기본 외부 URL 상수(항공 `https://www.google.com/travel/flights`, 숙소 `https://www.booking.com/`) 정의 위치 확정 | 해당 없음 (화면 요소 없음) | 1) Service Role Key를 쓰지 않고 `.env*`는 Git 제외<br>2) 클라이언트 노출 변수는 `NEXT_PUBLIC_*` 3개뿐 | `npm install && npm run lint && npm run typecheck && npm run build` | P0 |
+| 1 | SETUP-PROJECT | 패키지·스크립트·설정 초기화 | Setup | IMPLEMENT | REQ-NF-016, REQ-NF-031, REQ-FUNC-016, REQ-FUNC-024 | 없음 | - | - | - | `package.json`, `tsconfig.json`, `next.config.ts`, `.env.example`, `vitest.config.ts`, `playwright.config.ts`, `package-lock.json`, `.gitignore` | 1) `@supabase/supabase-js`, `@supabase/ssr`, `vitest`, `@playwright/test`, `@axe-core/playwright` 설치<br>2) 스크립트 `typecheck`(`tsc --noEmit`), `test:unit`(`vitest run`), `test:e2e`(`playwright test`) 추가<br>3) Playwright는 Chromium 프로젝트 하나만 정의(Desktop 1440×900, Mobile 390×844)<br>4) `.env.example`에 `NEXT_PUBLIC_SITE_URL`, `NEXT_PUBLIC_SUPABASE_URL`, `NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY`, E2E 테스트 계정 변수 기재<br>5) `next.config.ts` `images.remotePatterns`에 사용할 사진 호스트 등록<br>6) 기본 외부 URL 상수(항공 `https://www.google.com/travel/flights`, 숙소 `https://www.booking.com/`) 정의 위치 확정 | 해당 없음 (화면 요소 없음) | 1) Service Role Key를 쓰지 않고 `.env*`는 Git 제외<br>2) 클라이언트 노출 변수는 `NEXT_PUBLIC_*` 3개뿐<br>3) `.gitignore`는 `.env*` 제외를 유지하고 `!.env.example` 예외만 추가 | `npm install && npm run lint && npm run typecheck && npm run build` | P0 |
 
 ## 1. Context
 
@@ -16,7 +16,7 @@
 
 **범위**
 
-- Expected Files 6개 안에서 "패키지·스크립트·설정 초기화"을 구현한다
+- Expected Files 8개 안에서 "패키지·스크립트·설정 초기화"을 구현한다
 - §8~§10 AC를 모두 충족한다
 
 **범위 밖**
@@ -65,6 +65,8 @@
 - `package.json`
 - `tsconfig.json`
 - `next.config.ts`
+- `package-lock.json` (`npm install` 결과)
+- `.gitignore` (`!.env.example` 예외 한 줄)
 
 이 목록 밖의 파일은 수정하지 않는다.
 
@@ -85,6 +87,7 @@
 
 - Service Role Key를 쓰지 않고 `.env*`는 Git 제외
 - 클라이언트 노출 변수는 `NEXT_PUBLIC_*` 3개뿐
+- `.gitignore`는 `.env*` 제외를 유지하고 `!.env.example` 예외만 추가
 
 ## 11. Test Cases
 
