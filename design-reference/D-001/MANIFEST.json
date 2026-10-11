@@ -1,0 +1,21 @@
+{
+  "id": "D-001",
+  "name": "Free Traveler Design System",
+  "version": "1.0.0",
+  "status": "LOCKED",
+  "locked_at": "2026-10-09",
+  "locked_basis": "사용자 요청으로 Claude가 docs/04_UIUX_PLAN.md §3·§4와 Stitch 디자인 시스템(STITCH_VALIDATION_PASS)을 옮겨 작성. 새로 정한 값 없음",
+  "files": [
+    { "path": "design-reference/D-001/DESIGN.md", "sha256": "6282ae1e148fc77988e370bc2c758dbfe79e3b8adbcab431cf7365d6c60fcec4" }
+  ],
+  "sources": [
+    "docs/04_UIUX_PLAN.md",
+    "docs/05_UIUX_APPROVED.md",
+    "docs/STITCH_VALIDATION_REPORT.md"
+  ],
+  "stitch": {
+    "project_id": "12669658078193088277",
+    "design_system_asset": "assets/6924880912438359117"
+  },
+  "change_rule": "DESIGN.md를 바꾸면 version을 올리고 status를 DRAFT로 바꾼 뒤 다시 승인해 LOCKED로 되돌린다"
+}

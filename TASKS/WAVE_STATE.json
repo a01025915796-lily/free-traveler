@@ -1,0 +1,690 @@
+{
+  "schema_version": "traveler-wave-state-v2",
+  "generated_at": "2026-10-11T19:07:34+09:00",
+  "generated_by": "scripts/build_waves.py",
+  "status_values": {
+    "wave": [
+      "pending",
+      "in_progress",
+      "blocked",
+      "completed"
+    ],
+    "task": [
+      "pending",
+      "in_progress",
+      "blocked",
+      "failed",
+      "completed"
+    ],
+    "checkpoint_result": [
+      null,
+      "approved",
+      "changes_requested",
+      "release_ready",
+      "release_blocked"
+    ]
+  },
+  "waves": [
+    {
+      "wave_id": "W01",
+      "title": "Scaffold·문서·Harness 확인",
+      "group": 1,
+      "task_ids": [
+        "SETUP-PROJECT"
+      ],
+      "status": "pending",
+      "checkpoint_required": false,
+      "checkpoint_type": null,
+      "checkpoint_result": null,
+      "checkpoint_at": null,
+      "prerequisites": null,
+      "started_at": null,
+      "finished_at": null,
+      "blocked_reason": null,
+      "tasks": {
+        "SETUP-PROJECT": {
+          "status": "pending",
+          "finished_at": null,
+          "verify": null,
+          "note": null
+        }
+      }
+    },
+    {
+      "wave_id": "W02",
+      "title": "공통 UI·정적 데이터·Layout",
+      "group": 2,
+      "task_ids": [
+        "GLOBAL-DESIGN-TOKENS",
+        "GLOBAL-UI-KIT",
+        "GLOBAL-LAYOUT",
+        "DATA-DESTINATIONS",
+        "DATA-SAFETY",
+        "DATA-REPRESENTATIVE",
+        "TECH-ERROR-PAGES"
+      ],
+      "status": "pending",
+      "checkpoint_required": false,
+      "checkpoint_type": null,
+      "checkpoint_result": null,
+      "checkpoint_at": null,
+      "prerequisites": null,
+      "started_at": null,
+      "finished_at": null,
+      "blocked_reason": null,
+      "tasks": {
+        "GLOBAL-DESIGN-TOKENS": {
+          "status": "pending",
+          "finished_at": null,
+          "verify": null,
+          "note": null
+        },
+        "GLOBAL-UI-KIT": {
+          "status": "pending",
+          "finished_at": null,
+          "verify": null,
+          "note": null
+        },
+        "GLOBAL-LAYOUT": {
+          "status": "pending",
+          "finished_at": null,
+          "verify": null,
+          "note": null
+        },
+        "DATA-DESTINATIONS": {
+          "status": "pending",
+          "finished_at": null,
+          "verify": null,
+          "note": null
+        },
+        "DATA-SAFETY": {
+          "status": "pending",
+          "finished_at": null,
+          "verify": null,
+          "note": null
+        },
+        "DATA-REPRESENTATIVE": {
+          "status": "pending",
+          "finished_at": null,
+          "verify": null,
+          "note": null
+        },
+        "TECH-ERROR-PAGES": {
+          "status": "pending",
+          "finished_at": null,
+          "verify": null,
+          "note": null
+        }
+      }
+    },
+    {
+      "wave_id": "W03",
+      "title": "Supabase Auth·6개 Table·기본 RLS",
+      "group": 3,
+      "task_ids": [
+        "DB-SCHEMA-BASE",
+        "DB-RLS-BASE",
+        "DB-SEED-BASE",
+        "AUTH-SUPABASE",
+        "LOGIC-MATE-STATE",
+        "DB-ACCESS",
+        "TECH-AUTH-CALLBACK"
+      ],
+      "status": "pending",
+      "checkpoint_required": false,
+      "checkpoint_type": null,
+      "checkpoint_result": null,
+      "checkpoint_at": null,
+      "prerequisites": "착수 차단 해결(`docs/ARCHITECTURE.md` §12): `.env.local`, Docker 또는 원격 테스트 프로젝트, `supabase/config.toml` 배정",
+      "started_at": null,
+      "finished_at": null,
+      "blocked_reason": null,
+      "tasks": {
+        "DB-SCHEMA-BASE": {
+          "status": "pending",
+          "finished_at": null,
+          "verify": null,
+          "note": null
+        },
+        "DB-RLS-BASE": {
+          "status": "pending",
+          "finished_at": null,
+          "verify": null,
+          "note": null
+        },
+        "DB-SEED-BASE": {
+          "status": "pending",
+          "finished_at": null,
+          "verify": null,
+          "note": null
+        },
+        "AUTH-SUPABASE": {
+          "status": "pending",
+          "finished_at": null,
+          "verify": null,
+          "note": null
+        },
+        "LOGIC-MATE-STATE": {
+          "status": "pending",
+          "finished_at": null,
+          "verify": null,
+          "note": null
+        },
+        "DB-ACCESS": {
+          "status": "pending",
+          "finished_at": null,
+          "verify": null,
+          "note": null
+        },
+        "TECH-AUTH-CALLBACK": {
+          "status": "pending",
+          "finished_at": null,
+          "verify": null,
+          "note": null
+        }
+      }
+    },
+    {
+      "wave_id": "W04",
+      "title": "SCR-001 메인 (1/2)",
+      "group": 4,
+      "task_ids": [
+        "LOGIC-SEARCH-FILTER",
+        "LOGIC-SAFETY-STALE",
+        "LOGIC-FAVORITES-SHARE",
+        "COMP-SCR001-SEARCH",
+        "COMP-SCR001-DESTINATIONS"
+      ],
+      "status": "pending",
+      "checkpoint_required": false,
+      "checkpoint_type": null,
+      "checkpoint_result": null,
+      "checkpoint_at": null,
+      "prerequisites": null,
+      "started_at": null,
+      "finished_at": null,
+      "blocked_reason": null,
+      "tasks": {
+        "LOGIC-SEARCH-FILTER": {
+          "status": "pending",
+          "finished_at": null,
+          "verify": null,
+          "note": null
+        },
+        "LOGIC-SAFETY-STALE": {
+          "status": "pending",
+          "finished_at": null,
+          "verify": null,
+          "note": null
+        },
+        "LOGIC-FAVORITES-SHARE": {
+          "status": "pending",
+          "finished_at": null,
+          "verify": null,
+          "note": null
+        },
+        "COMP-SCR001-SEARCH": {
+          "status": "pending",
+          "finished_at": null,
+          "verify": null,
+          "note": null
+        },
+        "COMP-SCR001-DESTINATIONS": {
+          "status": "pending",
+          "finished_at": null,
+          "verify": null,
+          "note": null
+        }
+      }
+    },
+    {
+      "wave_id": "W05",
+      "title": "SCR-001 메인 (2/2)",
+      "group": 4,
+      "task_ids": [
+        "COMP-SCR001-DESTINATION-DRAWER",
+        "COMP-SCR001-SAFETY",
+        "COMP-SCR001-MATES-CURATOR",
+        "PAGE-SCR001"
+      ],
+      "status": "pending",
+      "checkpoint_required": true,
+      "checkpoint_type": "preview",
+      "checkpoint_result": null,
+      "checkpoint_at": null,
+      "prerequisites": null,
+      "started_at": null,
+      "finished_at": null,
+      "blocked_reason": null,
+      "tasks": {
+        "COMP-SCR001-DESTINATION-DRAWER": {
+          "status": "pending",
+          "finished_at": null,
+          "verify": null,
+          "note": null
+        },
+        "COMP-SCR001-SAFETY": {
+          "status": "pending",
+          "finished_at": null,
+          "verify": null,
+          "note": null
+        },
+        "COMP-SCR001-MATES-CURATOR": {
+          "status": "pending",
+          "finished_at": null,
+          "verify": null,
+          "note": null
+        },
+        "PAGE-SCR001": {
+          "status": "pending",
+          "finished_at": null,
+          "verify": null,
+          "note": null
+        }
+      }
+    },
+    {
+      "wave_id": "W06",
+      "title": "SCR-002 대표 소개",
+      "group": 5,
+      "task_ids": [
+        "COMP-SCR002-PROFILE",
+        "COMP-SCR002-COUNTRIES-GALLERY",
+        "PAGE-SCR002"
+      ],
+      "status": "pending",
+      "checkpoint_required": true,
+      "checkpoint_type": "preview",
+      "checkpoint_result": null,
+      "checkpoint_at": null,
+      "prerequisites": null,
+      "started_at": null,
+      "finished_at": null,
+      "blocked_reason": null,
+      "tasks": {
+        "COMP-SCR002-PROFILE": {
+          "status": "pending",
+          "finished_at": null,
+          "verify": null,
+          "note": null
+        },
+        "COMP-SCR002-COUNTRIES-GALLERY": {
+          "status": "pending",
+          "finished_at": null,
+          "verify": null,
+          "note": null
+        },
+        "PAGE-SCR002": {
+          "status": "pending",
+          "finished_at": null,
+          "verify": null,
+          "note": null
+        }
+      }
+    },
+    {
+      "wave_id": "W07",
+      "title": "SCR-003 여행 입력·외부 이동·동행글 입력 (1/2)",
+      "group": 6,
+      "task_ids": [
+        "LOGIC-TRAVEL-DATES",
+        "LOGIC-OUTBOUND-URL",
+        "LOGIC-CONTACT-DETECTION",
+        "COMP-SCR003-SHELL"
+      ],
+      "status": "pending",
+      "checkpoint_required": false,
+      "checkpoint_type": null,
+      "checkpoint_result": null,
+      "checkpoint_at": null,
+      "prerequisites": null,
+      "started_at": null,
+      "finished_at": null,
+      "blocked_reason": null,
+      "tasks": {
+        "LOGIC-TRAVEL-DATES": {
+          "status": "pending",
+          "finished_at": null,
+          "verify": null,
+          "note": null
+        },
+        "LOGIC-OUTBOUND-URL": {
+          "status": "pending",
+          "finished_at": null,
+          "verify": null,
+          "note": null
+        },
+        "LOGIC-CONTACT-DETECTION": {
+          "status": "pending",
+          "finished_at": null,
+          "verify": null,
+          "note": null
+        },
+        "COMP-SCR003-SHELL": {
+          "status": "pending",
+          "finished_at": null,
+          "verify": null,
+          "note": null
+        }
+      }
+    },
+    {
+      "wave_id": "W08",
+      "title": "SCR-003 여행 입력·외부 이동·동행글 입력 (2/2)",
+      "group": 6,
+      "task_ids": [
+        "COMP-SCR003-FLIGHT",
+        "COMP-SCR003-HOTEL",
+        "COMP-SCR003-MATE-COMPOSE",
+        "PAGE-SCR003"
+      ],
+      "status": "pending",
+      "checkpoint_required": true,
+      "checkpoint_type": "preview",
+      "checkpoint_result": null,
+      "checkpoint_at": null,
+      "prerequisites": null,
+      "started_at": null,
+      "finished_at": null,
+      "blocked_reason": null,
+      "tasks": {
+        "COMP-SCR003-FLIGHT": {
+          "status": "pending",
+          "finished_at": null,
+          "verify": null,
+          "note": null
+        },
+        "COMP-SCR003-HOTEL": {
+          "status": "pending",
+          "finished_at": null,
+          "verify": null,
+          "note": null
+        },
+        "COMP-SCR003-MATE-COMPOSE": {
+          "status": "pending",
+          "finished_at": null,
+          "verify": null,
+          "note": null
+        },
+        "PAGE-SCR003": {
+          "status": "pending",
+          "finished_at": null,
+          "verify": null,
+          "note": null
+        }
+      }
+    },
+    {
+      "wave_id": "W09",
+      "title": "SCR-004 동행 목록·상세·신청",
+      "group": 7,
+      "task_ids": [
+        "COMP-SCR004-FILTER-LIST",
+        "COMP-SCR004-DETAIL",
+        "COMP-SCR004-APPLY",
+        "COMP-SCR004-REPORT-BLOCK",
+        "COMP-SCR004-GUIDES",
+        "PAGE-SCR004"
+      ],
+      "status": "pending",
+      "checkpoint_required": true,
+      "checkpoint_type": "preview",
+      "checkpoint_result": null,
+      "checkpoint_at": null,
+      "prerequisites": null,
+      "started_at": null,
+      "finished_at": null,
+      "blocked_reason": null,
+      "tasks": {
+        "COMP-SCR004-FILTER-LIST": {
+          "status": "pending",
+          "finished_at": null,
+          "verify": null,
+          "note": null
+        },
+        "COMP-SCR004-DETAIL": {
+          "status": "pending",
+          "finished_at": null,
+          "verify": null,
+          "note": null
+        },
+        "COMP-SCR004-APPLY": {
+          "status": "pending",
+          "finished_at": null,
+          "verify": null,
+          "note": null
+        },
+        "COMP-SCR004-REPORT-BLOCK": {
+          "status": "pending",
+          "finished_at": null,
+          "verify": null,
+          "note": null
+        },
+        "COMP-SCR004-GUIDES": {
+          "status": "pending",
+          "finished_at": null,
+          "verify": null,
+          "note": null
+        },
+        "PAGE-SCR004": {
+          "status": "pending",
+          "finished_at": null,
+          "verify": null,
+          "note": null
+        }
+      }
+    },
+    {
+      "wave_id": "W10",
+      "title": "SCR-005 계정·내 활동·간단 관리자",
+      "group": 8,
+      "task_ids": [
+        "COMP-SCR005-AUTH",
+        "COMP-SCR005-PROFILE",
+        "COMP-SCR005-ACTIVITY",
+        "COMP-SCR005-ADMIN",
+        "PAGE-SCR005"
+      ],
+      "status": "pending",
+      "checkpoint_required": true,
+      "checkpoint_type": "preview",
+      "checkpoint_result": null,
+      "checkpoint_at": null,
+      "prerequisites": null,
+      "started_at": null,
+      "finished_at": null,
+      "blocked_reason": null,
+      "tasks": {
+        "COMP-SCR005-AUTH": {
+          "status": "pending",
+          "finished_at": null,
+          "verify": null,
+          "note": null
+        },
+        "COMP-SCR005-PROFILE": {
+          "status": "pending",
+          "finished_at": null,
+          "verify": null,
+          "note": null
+        },
+        "COMP-SCR005-ACTIVITY": {
+          "status": "pending",
+          "finished_at": null,
+          "verify": null,
+          "note": null
+        },
+        "COMP-SCR005-ADMIN": {
+          "status": "pending",
+          "finished_at": null,
+          "verify": null,
+          "note": null
+        },
+        "PAGE-SCR005": {
+          "status": "pending",
+          "finished_at": null,
+          "verify": null,
+          "note": null
+        }
+      }
+    },
+    {
+      "wave_id": "W11",
+      "title": "Unit·Playwright·접근성·CI (1/2)",
+      "group": 9,
+      "task_ids": [
+        "SETUP-CI",
+        "UNIT-TRAVEL-DATES",
+        "UNIT-CONTACT-DETECTION",
+        "UNIT-MATE-STATE",
+        "UNIT-CONTENT-DATA",
+        "UNIT-SEARCH-STALE"
+      ],
+      "status": "pending",
+      "checkpoint_required": false,
+      "checkpoint_type": null,
+      "checkpoint_result": null,
+      "checkpoint_at": null,
+      "prerequisites": "테스트 계정 3개(`E2E_USER_A_*`, `E2E_USER_B_*`, `E2E_ADMIN_*`), Git 원격 저장소·`gh auth login`(CI 확인)",
+      "started_at": null,
+      "finished_at": null,
+      "blocked_reason": null,
+      "tasks": {
+        "SETUP-CI": {
+          "status": "pending",
+          "finished_at": null,
+          "verify": null,
+          "note": null
+        },
+        "UNIT-TRAVEL-DATES": {
+          "status": "pending",
+          "finished_at": null,
+          "verify": null,
+          "note": null
+        },
+        "UNIT-CONTACT-DETECTION": {
+          "status": "pending",
+          "finished_at": null,
+          "verify": null,
+          "note": null
+        },
+        "UNIT-MATE-STATE": {
+          "status": "pending",
+          "finished_at": null,
+          "verify": null,
+          "note": null
+        },
+        "UNIT-CONTENT-DATA": {
+          "status": "pending",
+          "finished_at": null,
+          "verify": null,
+          "note": null
+        },
+        "UNIT-SEARCH-STALE": {
+          "status": "pending",
+          "finished_at": null,
+          "verify": null,
+          "note": null
+        }
+      }
+    },
+    {
+      "wave_id": "W12",
+      "title": "Unit·Playwright·접근성·CI (2/2)",
+      "group": 9,
+      "task_ids": [
+        "UNIT-OUTBOUND-FAVORITES",
+        "UNIT-ROUTE-CONTRACT",
+        "TEST-RLS-BASIC",
+        "E2E-PUBLIC-SMOKE",
+        "E2E-TRAVEL-TOOLS",
+        "E2E-MATE-AUTH"
+      ],
+      "status": "pending",
+      "checkpoint_required": false,
+      "checkpoint_type": null,
+      "checkpoint_result": null,
+      "checkpoint_at": null,
+      "prerequisites": null,
+      "started_at": null,
+      "finished_at": null,
+      "blocked_reason": null,
+      "tasks": {
+        "UNIT-OUTBOUND-FAVORITES": {
+          "status": "pending",
+          "finished_at": null,
+          "verify": null,
+          "note": null
+        },
+        "UNIT-ROUTE-CONTRACT": {
+          "status": "pending",
+          "finished_at": null,
+          "verify": null,
+          "note": null
+        },
+        "TEST-RLS-BASIC": {
+          "status": "pending",
+          "finished_at": null,
+          "verify": null,
+          "note": null
+        },
+        "E2E-PUBLIC-SMOKE": {
+          "status": "pending",
+          "finished_at": null,
+          "verify": null,
+          "note": null
+        },
+        "E2E-TRAVEL-TOOLS": {
+          "status": "pending",
+          "finished_at": null,
+          "verify": null,
+          "note": null
+        },
+        "E2E-MATE-AUTH": {
+          "status": "pending",
+          "finished_at": null,
+          "verify": null,
+          "note": null
+        }
+      }
+    },
+    {
+      "wave_id": "W13",
+      "title": "Vercel Preview·Release 확인",
+      "group": 10,
+      "task_ids": [
+        "DEPLOY-VERCEL-SUPABASE",
+        "MANUAL-CHECK",
+        "RELEASE-CHECK"
+      ],
+      "status": "pending",
+      "checkpoint_required": true,
+      "checkpoint_type": "release",
+      "checkpoint_result": null,
+      "checkpoint_at": null,
+      "prerequisites": "Vercel 프로젝트 연결",
+      "started_at": null,
+      "finished_at": null,
+      "blocked_reason": null,
+      "tasks": {
+        "DEPLOY-VERCEL-SUPABASE": {
+          "status": "pending",
+          "finished_at": null,
+          "verify": null,
+          "note": null
+        },
+        "MANUAL-CHECK": {
+          "status": "pending",
+          "finished_at": null,
+          "verify": null,
+          "note": null
+        },
+        "RELEASE-CHECK": {
+          "status": "pending",
+          "finished_at": null,
+          "verify": null,
+          "note": null
+        }
+      }
+    }
+  ]
+}

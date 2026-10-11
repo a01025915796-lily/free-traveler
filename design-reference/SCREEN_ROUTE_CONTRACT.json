@@ -1,0 +1,1236 @@
+{
+  "schema_version": "traveler-screen-route-v1",
+  "framework": "nextjs-app-router",
+  "framework_version": "next@16.4.0",
+  "generated_at": "2026-10-09",
+  "sources": [
+    "docs/03_UI_COVERAGE_ANALYSIS.md",
+    "docs/04_UIUX_PLAN.md",
+    "docs/STITCH_VALIDATION_REPORT.md",
+    "design-reference/UI_CONTRACT.md"
+  ],
+  "design_tokens_source": {
+    "current": "docs/04_UIUX_PLAN.md#3",
+    "pending": "design-reference/D-001/DESIGN.md (missing)"
+  },
+  "stitch_validation": "STITCH_VALIDATION_PASS",
+  "shared_layout": {
+    "root_layout": "src/app/layout.tsx",
+    "html_lang": "ko",
+    "font": "Inter + system Korean fallback",
+    "components": [
+      "SiteHeader",
+      "SiteFooter",
+      "SkipLink",
+      "ToastRegion",
+      "PolicyDialog"
+    ],
+    "viewports": {
+      "desktop": 1440,
+      "mobile": 390,
+      "min": 320
+    }
+  },
+  "screens": [
+    {
+      "screen_id": "SCR-001",
+      "name": "메인",
+      "tier": "core",
+      "route": "/",
+      "page_entry": "src/app/page.tsx",
+      "design_ref": {
+        "stitch_project_id": "12669658078193088277",
+        "desktop_screen_id": "fd6afbb21ac84ac5a37017043f45c8f9",
+        "mobile_screen_id": "3f3464457ac14719b8a826fffb0c8945"
+      },
+      "access": "public",
+      "query_params": [
+        "q",
+        "scope",
+        "kind",
+        "country",
+        "city",
+        "season",
+        "theme",
+        "days",
+        "fav",
+        "dest",
+        "safety"
+      ],
+      "data_sources": [
+        "src/data (destinations, safety, curator)",
+        "localStorage (favorites)",
+        "supabase:mate_posts (public, recent 3)"
+      ],
+      "sections": [
+        {
+          "order": 1,
+          "id": "search-hero",
+          "title": "어디로 떠날지, 여기서 차근차근 정해 보세요",
+          "components": [
+            "SearchHero",
+            "SearchBar"
+          ]
+        },
+        {
+          "order": 2,
+          "id": "domestic-picks",
+          "title": "free_traveler가 고른 국내 여행지",
+          "components": [
+            "DestinationGrid",
+            "DestinationCard"
+          ]
+        },
+        {
+          "order": 3,
+          "id": "overseas-picks",
+          "title": "free_traveler가 고른 해외 여행지",
+          "components": [
+            "DestinationBento",
+            "DestinationCard"
+          ]
+        },
+        {
+          "order": 4,
+          "id": "themes",
+          "title": "이번 여행에서 무엇을 하고 싶으세요?",
+          "components": [
+            "ThemeTileGrid"
+          ]
+        },
+        {
+          "order": 5,
+          "id": "country-safety",
+          "title": "떠나기 전에 국가별 주의사항을 확인하세요",
+          "components": [
+            "SafetyCardGrid",
+            "SafetyCard",
+            "AdvisoryBadge"
+          ]
+        },
+        {
+          "order": 6,
+          "id": "recent-mates",
+          "title": "함께 떠날 동행을 찾고 있나요?",
+          "components": [
+            "RecentMatesSection",
+            "MateCard",
+            "EmptyState"
+          ]
+        },
+        {
+          "order": 7,
+          "id": "curator-teaser",
+          "title": "여행지를 고르는 사람, free_traveler",
+          "components": [
+            "CuratorTeaser",
+            "StatTile"
+          ]
+        }
+      ],
+      "overlays": [
+        {
+          "id": "search-results-mode",
+          "trigger": "q|scope|filters present",
+          "replaces_sections": [
+            2,
+            3
+          ],
+          "components": [
+            "SearchResultsSection",
+            "FilterBar"
+          ]
+        },
+        {
+          "id": "destination-drawer",
+          "query": "dest",
+          "components": [
+            "DestinationDrawer"
+          ]
+        },
+        {
+          "id": "safety-drawer",
+          "query": "safety",
+          "components": [
+            "SafetyDrawer"
+          ]
+        }
+      ],
+      "states": [
+        "success",
+        "loading:recent-mates",
+        "empty:search-results",
+        "empty:favorites",
+        "empty:recent-mates",
+        "error:recent-mates",
+        "error:invalid-drawer-param",
+        "stale:safety"
+      ],
+      "user_actions": [
+        "search",
+        "filter",
+        "reset-filters",
+        "open-destination",
+        "toggle-favorite",
+        "select-theme",
+        "open-safety",
+        "share",
+        "close-drawer",
+        "open-mofa-external"
+      ],
+      "layout": {
+        "desktop_1440": "Hero 7:5 split max 520px; domestic 3x2; overseas bento; themes 3x2; safety 4:8 split with 2x3 cards; mates 3 cols; curator 5:7 split; drawer right 640px",
+        "mobile_390": "single column cards; hero title-search-buttons-photo(16:10); filters in bottom sheet; drawers full-screen sheet"
+      },
+      "forbidden_features": [
+        "airbnb_branding",
+        "flight_hotel_search_results",
+        "prices_or_inventory",
+        "booking_payment_ui",
+        "ratings_reviews",
+        "ads",
+        "realtime_chat_or_notifications",
+        "analytics_event_collection",
+        "custom_route_handlers_or_server_actions",
+        "stats_charts_dashboards",
+        "lorem_or_placeholder_copy",
+        "objective_popularity_ranking",
+        "unsourced_safety_info",
+        "color_only_advisory",
+        "content_cms"
+      ],
+      "requirements": [
+        "REQ-FUNC-001~006",
+        "REQ-FUNC-009",
+        "REQ-FUNC-010",
+        "REQ-FUNC-047~054",
+        "REQ-FUNC-057",
+        "REQ-FUNC-067~069",
+        "REQ-NF-028"
+      ],
+      "page_owner_task_required": true,
+      "preview_required": true,
+      "starter_template_forbidden": true
+    },
+    {
+      "screen_id": "SCR-002",
+      "name": "대표 소개",
+      "tier": "auxiliary",
+      "route": "/about",
+      "page_entry": "src/app/about/page.tsx",
+      "design_ref": {
+        "stitch_project_id": "12669658078193088277",
+        "desktop_screen_id": "beeebd01d9be475392c9e7c6f46d6395",
+        "mobile_screen_id": null
+      },
+      "access": "public",
+      "query_params": [],
+      "data_sources": [
+        "src/data/curator.ts"
+      ],
+      "sections": [
+        {
+          "order": 1,
+          "id": "profile-hero",
+          "title": "내가 감당할 수 있는 속도로, 현지를 이해하는 여행",
+          "components": [
+            "ProfileHero",
+            "ContactLinks"
+          ]
+        },
+        {
+          "order": 2,
+          "id": "stats",
+          "title": "숫자로 보는 여행 이력",
+          "components": [
+            "StatTile"
+          ]
+        },
+        {
+          "order": 3,
+          "id": "story",
+          "title": "free_traveler는 이런 여행을 합니다",
+          "components": [
+            "ProfileStory"
+          ]
+        },
+        {
+          "order": 4,
+          "id": "timeline",
+          "title": "여행으로 쌓아 온 시간",
+          "components": [
+            "TravelTimeline"
+          ]
+        },
+        {
+          "order": 5,
+          "id": "countries",
+          "title": "다녀온 30개 나라",
+          "components": [
+            "CountryChipGroup"
+          ]
+        },
+        {
+          "order": 6,
+          "id": "gallery",
+          "title": "길 위에서 담은 장면들",
+          "components": [
+            "PhotoGallery"
+          ]
+        },
+        {
+          "order": 7,
+          "id": "memories",
+          "title": "다시 가고 싶은 네 곳",
+          "components": [
+            "MemoryCard",
+            "LinkChip",
+            "CtaBanner"
+          ]
+        }
+      ],
+      "overlays": [],
+      "states": [
+        "success",
+        "error:image-fallback",
+        "hidden:empty-sns-links"
+      ],
+      "user_actions": [
+        "open-contact-link",
+        "select-country",
+        "browse-gallery",
+        "open-memory-destination",
+        "open-recommended-destination",
+        "cta-travel-tools",
+        "cta-mates"
+      ],
+      "layout": {
+        "desktop_1440": "hero 6:6; stats 4 cols; story 4:8 sticky heading; timeline horizontal; countries 4 cols; gallery 4x2; memories 2x2",
+        "mobile_390": "single column; timeline vertical; gallery swipe one per view with prev/next and position"
+      },
+      "forbidden_features": [
+        "airbnb_branding",
+        "flight_hotel_search_results",
+        "prices_or_inventory",
+        "booking_payment_ui",
+        "ratings_reviews",
+        "ads",
+        "realtime_chat_or_notifications",
+        "analytics_event_collection",
+        "custom_route_handlers_or_server_actions",
+        "stats_charts_dashboards",
+        "lorem_or_placeholder_copy",
+        "curator_stats_other_than_50plus_30plus",
+        "identifiable_faces",
+        "media_license_management_ui"
+      ],
+      "requirements": [
+        "REQ-FUNC-057~060",
+        "REQ-FUNC-062",
+        "REQ-FUNC-063"
+      ],
+      "page_owner_task_required": true,
+      "preview_required": true,
+      "starter_template_forbidden": false
+    },
+    {
+      "screen_id": "SCR-003",
+      "name": "통합 여행 준비",
+      "tier": "core",
+      "route": "/travel-tools",
+      "page_entry": "src/app/travel-tools/page.tsx",
+      "design_ref": {
+        "stitch_project_id": "12669658078193088277",
+        "desktop_screen_id": "e60c66e71011429289057057824b567c",
+        "mobile_screen_id": "ffa60caca42c439cb75b48963f5f1d05"
+      },
+      "access": "public (mate tab: adult member)",
+      "query_params": [
+        "tab",
+        "edit"
+      ],
+      "data_sources": [
+        "client component state only (flight/hotel)",
+        "supabase:app_settings (outbound urls)",
+        "supabase:mate_posts (create/update)"
+      ],
+      "sections": [
+        {
+          "order": 1,
+          "id": "intro",
+          "title": "여행 조건을 먼저 정리하고 떠나세요",
+          "components": [
+            "ToolsIntro",
+            "StepGuide"
+          ]
+        },
+        {
+          "order": 2,
+          "id": "tabs",
+          "title": "(aria-label: 여행 준비 도구)",
+          "components": [
+            "ToolsTabs"
+          ]
+        },
+        {
+          "order": 3,
+          "id": "condition-form",
+          "title": "어디로, 언제 떠나시나요? / 어디에서, 언제 머무시나요?",
+          "components": [
+            "TripConditionForm",
+            "RegionSelect",
+            "DateField"
+          ]
+        },
+        {
+          "order": 4,
+          "id": "summary-outbound",
+          "title": "입력 요약",
+          "components": [
+            "TripSummaryCard",
+            "OutboundButton"
+          ]
+        },
+        {
+          "order": 5,
+          "id": "notice-tips",
+          "title": "이동하기 전에 알아 두세요",
+          "components": [
+            "NonTransferNotice",
+            "TipCard"
+          ]
+        },
+        {
+          "order": 6,
+          "id": "mate-compose",
+          "title": "함께 떠날 동행을 모집해 보세요",
+          "components": [
+            "MateAuthGate",
+            "MatePostForm",
+            "SafetyGuideCard"
+          ]
+        }
+      ],
+      "overlays": [
+        {
+          "id": "tab-flight",
+          "query": "tab=flight",
+          "visible_sections": [
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "default": true
+        },
+        {
+          "id": "tab-hotel",
+          "query": "tab=hotel",
+          "visible_sections": [
+            1,
+            2,
+            3,
+            4,
+            5
+          ]
+        },
+        {
+          "id": "tab-mate",
+          "query": "tab=mate",
+          "visible_sections": [
+            1,
+            2,
+            6
+          ]
+        },
+        {
+          "id": "mate-edit-mode",
+          "query": "tab=mate&edit",
+          "visible_sections": [
+            1,
+            2,
+            6
+          ]
+        },
+        {
+          "id": "date-change-confirm",
+          "components": [
+            "ConfirmDialog"
+          ]
+        }
+      ],
+      "states": [
+        "success:summary",
+        "error:validation",
+        "error:outbound-unavailable",
+        "unauthorized:guest",
+        "unauthorized:not-adult",
+        "unauthorized:cannot-edit",
+        "error:contact-detected",
+        "error:submit-failed",
+        "loading:submitting",
+        "loading:edit-prefill",
+        "warning:accepted-applicants-date-change"
+      ],
+      "user_actions": [
+        "switch-tab",
+        "enter-conditions",
+        "confirm-summary",
+        "edit-conditions",
+        "open-outbound-new-tab",
+        "compose-mate-post",
+        "agree-safety-rules",
+        "submit-mate-post",
+        "open-policy-dialog"
+      ],
+      "layout": {
+        "desktop_1440": "intro with horizontal 3 steps; sticky tabs; form 7 cols + sticky summary card 5 cols; tips 3 cols; mate tab 8:4",
+        "mobile_390": "steps vertical; tabs horizontal scroll; form then summary card single column; tips single column; safety guide below form"
+      },
+      "forbidden_features": [
+        "airbnb_branding",
+        "flight_hotel_search_results",
+        "prices_or_inventory",
+        "booking_payment_ui",
+        "ratings_reviews",
+        "ads",
+        "realtime_chat_or_notifications",
+        "analytics_event_collection",
+        "custom_route_handlers_or_server_actions",
+        "stats_charts_dashboards",
+        "lorem_or_placeholder_copy",
+        "trip_inputs_in_url_server_cookie_localstorage_logs",
+        "query_params_on_outbound_url",
+        "fare_or_deal_copy",
+        "server_api_for_flight_hotel",
+        "public_contact_in_post"
+      ],
+      "requirements": [
+        "REQ-FUNC-011~026",
+        "REQ-FUNC-027",
+        "REQ-FUNC-031",
+        "REQ-FUNC-032",
+        "REQ-FUNC-038",
+        "REQ-FUNC-054",
+        "REQ-FUNC-080"
+      ],
+      "page_owner_task_required": true,
+      "preview_required": true,
+      "starter_template_forbidden": false
+    },
+    {
+      "screen_id": "SCR-004",
+      "name": "동행 조회",
+      "tier": "core",
+      "route": "/mates",
+      "page_entry": "src/app/mates/page.tsx",
+      "design_ref": {
+        "stitch_project_id": "12669658078193088277",
+        "desktop_screen_id": "a5652785ec3c4c36ad2b028e4851e080",
+        "mobile_screen_id": null
+      },
+      "access": "public (apply/report/block: adult member)",
+      "query_params": [
+        "post",
+        "country",
+        "region",
+        "from",
+        "to",
+        "status",
+        "age",
+        "gender",
+        "style"
+      ],
+      "data_sources": [
+        "supabase:mate_posts",
+        "supabase:mate_applications",
+        "supabase:user_blocks",
+        "supabase:reports"
+      ],
+      "sections": [
+        {
+          "order": 1,
+          "id": "intro",
+          "title": "일정이 맞는 여행 동행을 찾아보세요",
+          "components": [
+            "MatesIntro"
+          ]
+        },
+        {
+          "order": 2,
+          "id": "filter-summary",
+          "title": "조건으로 좁혀 보기",
+          "components": [
+            "MateFilterBar",
+            "ResultSummary"
+          ]
+        },
+        {
+          "order": 3,
+          "id": "list",
+          "title": "모집 중인 동행글",
+          "components": [
+            "MateList",
+            "MateCard"
+          ]
+        },
+        {
+          "order": 4,
+          "id": "detail",
+          "title": "(선택한 글 제목)",
+          "components": [
+            "MateDetailPanel",
+            "ApplicationForm",
+            "ReportDialog",
+            "BlockConfirmDialog",
+            "ApplyChecklistCard",
+            "ReportHintCard"
+          ]
+        },
+        {
+          "order": 5,
+          "id": "how-to-apply",
+          "title": "동행 신청은 이렇게 진행돼요",
+          "components": [
+            "StepGuide"
+          ]
+        },
+        {
+          "order": 6,
+          "id": "safety",
+          "title": "안전한 동행을 위해 꼭 지켜 주세요",
+          "components": [
+            "SafetyRules",
+            "CtaBanner"
+          ]
+        }
+      ],
+      "overlays": [
+        {
+          "id": "mate-detail",
+          "query": "post",
+          "desktop": "split panel (sections 3+4)",
+          "mobile": "full-screen drawer"
+        },
+        {
+          "id": "report-dialog",
+          "components": [
+            "ReportDialog"
+          ]
+        },
+        {
+          "id": "block-confirm",
+          "components": [
+            "BlockConfirmDialog"
+          ]
+        }
+      ],
+      "states": [
+        "loading",
+        "success",
+        "empty:no-posts",
+        "empty:no-match",
+        "error:list",
+        "error:post-unavailable",
+        "unauthorized:guest",
+        "unauthorized:not-adult",
+        "already-applied",
+        "closed",
+        "done:applied",
+        "done:reported",
+        "done:blocked"
+      ],
+      "user_actions": [
+        "filter",
+        "reset-filters",
+        "load-more",
+        "select-post",
+        "write-application",
+        "submit-application",
+        "share",
+        "report",
+        "block",
+        "edit-own-post",
+        "close-own-post",
+        "delete-own-post",
+        "close-detail"
+      ],
+      "layout": {
+        "desktop_1440": "list 7 cols + sticky detail panel 5 cols with 2 hint cards below; filter one row; steps horizontal; safety split",
+        "mobile_390": "list single column; detail full-screen drawer; filters bottom sheet; steps vertical"
+      },
+      "forbidden_features": [
+        "airbnb_branding",
+        "flight_hotel_search_results",
+        "prices_or_inventory",
+        "booking_payment_ui",
+        "ratings_reviews",
+        "ads",
+        "realtime_chat_or_notifications",
+        "analytics_event_collection",
+        "custom_route_handlers_or_server_actions",
+        "stats_charts_dashboards",
+        "lorem_or_placeholder_copy",
+        "author_contact_exposure",
+        "realtime_notification_copy",
+        "minor_participation",
+        "moderator_sanction_ui",
+        "application_withdraw"
+      ],
+      "requirements": [
+        "REQ-FUNC-027",
+        "REQ-FUNC-030",
+        "REQ-FUNC-033~035",
+        "REQ-FUNC-037~040",
+        "REQ-FUNC-069"
+      ],
+      "page_owner_task_required": true,
+      "preview_required": true,
+      "starter_template_forbidden": false
+    },
+    {
+      "screen_id": "SCR-005",
+      "name": "계정·관리",
+      "tier": "core",
+      "route": "/account",
+      "page_entry": "src/app/account/page.tsx",
+      "design_ref": {
+        "stitch_project_id": "12669658078193088277",
+        "desktop_screen_id": "97ccb288104a40f3a1c10c801636f942",
+        "mobile_screen_id": null
+      },
+      "access": "guest: login only / member: profile, activity / admin: + admin",
+      "query_params": [
+        "tab",
+        "next",
+        "mode"
+      ],
+      "data_sources": [
+        "supabase:auth",
+        "supabase:profiles",
+        "supabase:mate_posts",
+        "supabase:mate_applications",
+        "supabase:user_blocks",
+        "supabase:reports (admin)",
+        "supabase:app_settings (admin)"
+      ],
+      "sections": [
+        {
+          "order": 1,
+          "id": "guest-intro",
+          "title": "Free Traveler 계정",
+          "components": [
+            "AccountIntro"
+          ]
+        },
+        {
+          "order": 2,
+          "id": "guest-auth",
+          "title": "로그인 / 회원가입 / 비밀번호 재설정",
+          "components": [
+            "AuthCard"
+          ]
+        },
+        {
+          "order": 3,
+          "id": "guest-features",
+          "title": "로그인하면 이런 일을 할 수 있어요",
+          "components": [
+            "FeatureCard"
+          ]
+        },
+        {
+          "order": 4,
+          "id": "guest-privacy",
+          "title": "개인정보는 꼭 필요한 만큼만 받아요",
+          "components": [
+            "PrivacyChecklist"
+          ]
+        },
+        {
+          "order": 5,
+          "id": "member-summary",
+          "title": "안녕하세요, {닉네임}님",
+          "components": [
+            "AccountSummary",
+            "AccountTabs"
+          ]
+        },
+        {
+          "order": 6,
+          "id": "profile",
+          "title": "프로필과 성인 확인",
+          "components": [
+            "AdultVerifyCard",
+            "ProfileForm"
+          ]
+        },
+        {
+          "order": 7,
+          "id": "my-posts",
+          "title": "내가 올린 동행글",
+          "components": [
+            "MyPostList"
+          ]
+        },
+        {
+          "order": 8,
+          "id": "applications",
+          "title": "참가 요청",
+          "components": [
+            "ApplicationTabs",
+            "ReceivedRequestCard",
+            "SentRequestRow"
+          ]
+        },
+        {
+          "order": 9,
+          "id": "blocks",
+          "title": "차단한 회원",
+          "components": [
+            "BlockList"
+          ]
+        },
+        {
+          "order": 10,
+          "id": "new-post-cta",
+          "title": "다음 여행의 동행을 모집해 보세요",
+          "components": [
+            "CtaBanner"
+          ]
+        },
+        {
+          "order": 11,
+          "id": "admin-reports",
+          "title": "운영 관리 · 신고 목록",
+          "components": [
+            "ReportStatusChips",
+            "ReportList"
+          ]
+        },
+        {
+          "order": 12,
+          "id": "admin-outbound",
+          "title": "항공·숙소 외부 이동 주소",
+          "components": [
+            "OutboundUrlForm"
+          ]
+        },
+        {
+          "order": 13,
+          "id": "help",
+          "title": "도움말",
+          "components": [
+            "HelpList"
+          ]
+        }
+      ],
+      "overlays": [
+        {
+          "id": "role-guest",
+          "query": "tab=login",
+          "visible_sections": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "id": "tab-profile",
+          "query": "tab=profile",
+          "roles": [
+            "member",
+            "admin"
+          ],
+          "visible_sections": [
+            5,
+            6,
+            13
+          ]
+        },
+        {
+          "id": "tab-activity",
+          "query": "tab=activity",
+          "roles": [
+            "member",
+            "admin"
+          ],
+          "visible_sections": [
+            5,
+            7,
+            8,
+            9,
+            10,
+            13
+          ],
+          "default": true
+        },
+        {
+          "id": "tab-admin",
+          "query": "tab=admin",
+          "roles": [
+            "admin"
+          ],
+          "visible_sections": [
+            5,
+            11,
+            12
+          ]
+        }
+      ],
+      "states": [
+        "loading:session",
+        "success",
+        "empty:my-posts",
+        "empty:received",
+        "empty:sent",
+        "empty:blocks",
+        "empty:reports",
+        "error:auth",
+        "error:unverified-email",
+        "error:expired-link",
+        "error:nickname-taken",
+        "error:outbound-url-invalid",
+        "error:save-failed",
+        "unauthorized:guest-on-member-tab",
+        "unauthorized:member-on-admin-tab",
+        "done:toast"
+      ],
+      "user_actions": [
+        "login",
+        "signup",
+        "resend-verification",
+        "request-password-reset",
+        "set-new-password",
+        "logout",
+        "verify-adult",
+        "save-profile",
+        "view-own-post",
+        "edit-own-post",
+        "close-own-post",
+        "accept-application",
+        "reject-application",
+        "unblock",
+        "admin-change-report-status",
+        "admin-save-outbound-urls"
+      ],
+      "layout": {
+        "desktop_1440": "guest: intro + auth card split, features 3 cols; member: summary band + tabs, list rows with right-aligned actions; admin: reports + outbound form 2 cols",
+        "mobile_390": "single column; row actions wrap below; report list as cards"
+      },
+      "forbidden_features": [
+        "airbnb_branding",
+        "flight_hotel_search_results",
+        "prices_or_inventory",
+        "booking_payment_ui",
+        "ratings_reviews",
+        "ads",
+        "realtime_chat_or_notifications",
+        "analytics_event_collection",
+        "custom_route_handlers_or_server_actions",
+        "stats_charts_dashboards",
+        "lorem_or_placeholder_copy",
+        "birthdate_input_or_storage",
+        "other_member_email_exposure",
+        "admin_dashboard_stats_charts",
+        "content_cms_media_upload_audit_log",
+        "moderator_sanctions",
+        "account_auto_deletion_or_export",
+        "role_change_ui"
+      ],
+      "requirements": [
+        "REQ-FUNC-028",
+        "REQ-FUNC-029",
+        "REQ-FUNC-036",
+        "REQ-FUNC-038",
+        "REQ-FUNC-040",
+        "REQ-FUNC-041",
+        "REQ-FUNC-043",
+        "REQ-FUNC-066",
+        "REQ-FUNC-077"
+      ],
+      "page_owner_task_required": true,
+      "preview_required": true,
+      "starter_template_forbidden": false
+    }
+  ],
+  "technical_routes": [
+    {
+      "id": "TR-AUTH-CALLBACK",
+      "kind": "auth_callback",
+      "route": "/auth/callback",
+      "entry": "src/app/auth/callback/page.tsx",
+      "implementation": "client page; browser Supabase client finalizes session then router.replace",
+      "counts_as_screen": false,
+      "redirects_to": [
+        "/account?tab=profile",
+        "/account?tab=login&mode=reset"
+      ]
+    },
+    {
+      "id": "TR-API",
+      "kind": "api_route",
+      "route": "/api/*",
+      "entry": null,
+      "implementation": "not allowed: PROJECT_SCOPE §5.2 forbids custom Route Handlers and Server Actions; writes go through browser Supabase client with RLS",
+      "counts_as_screen": false,
+      "allowed": false
+    },
+    {
+      "id": "TR-NOT-FOUND",
+      "kind": "not_found",
+      "route": "(unmatched)",
+      "entry": "src/app/not-found.tsx",
+      "implementation": "404 with links to / and destinations",
+      "counts_as_screen": false
+    },
+    {
+      "id": "TR-ERROR",
+      "kind": "error_boundary",
+      "route": "(render error)",
+      "entry": "src/app/error.tsx",
+      "implementation": "client error boundary with retry and home",
+      "counts_as_screen": false
+    },
+    {
+      "id": "TR-PROXY",
+      "kind": "proxy",
+      "route": "(all requests)",
+      "entry": "src/proxy.ts",
+      "implementation": "Supabase session cookie refresh only (Next.js 16 Proxy, formerly Middleware)",
+      "counts_as_screen": false
+    }
+  ],
+  "required_navigation": [
+    {
+      "from": "GLOBAL_HEADER",
+      "to": "SCR-001",
+      "trigger": "nav 여행지",
+      "href": "/"
+    },
+    {
+      "from": "GLOBAL_HEADER",
+      "to": "SCR-002",
+      "trigger": "nav 대표 소개",
+      "href": "/about"
+    },
+    {
+      "from": "GLOBAL_HEADER",
+      "to": "SCR-003",
+      "trigger": "nav 여행 준비",
+      "href": "/travel-tools"
+    },
+    {
+      "from": "GLOBAL_HEADER",
+      "to": "SCR-004",
+      "trigger": "nav 동행 찾기",
+      "href": "/mates"
+    },
+    {
+      "from": "GLOBAL_HEADER",
+      "to": "SCR-005",
+      "trigger": "account entry",
+      "href": "/account"
+    },
+    {
+      "from": "SCR-001",
+      "to": "SCR-003",
+      "trigger": "hero secondary button",
+      "href": "/travel-tools"
+    },
+    {
+      "from": "SCR-001",
+      "to": "SCR-003",
+      "trigger": "destination drawer next action",
+      "href": "/travel-tools?tab=flight|hotel"
+    },
+    {
+      "from": "SCR-001",
+      "to": "SCR-003",
+      "trigger": "recent mates write CTA",
+      "href": "/travel-tools?tab=mate"
+    },
+    {
+      "from": "SCR-001",
+      "to": "SCR-004",
+      "trigger": "recent mate card / see all",
+      "href": "/mates?post=<id>|/mates"
+    },
+    {
+      "from": "SCR-001",
+      "to": "SCR-004",
+      "trigger": "destination drawer find mates",
+      "href": "/mates?country=<code>"
+    },
+    {
+      "from": "SCR-001",
+      "to": "SCR-002",
+      "trigger": "curator teaser button",
+      "href": "/about"
+    },
+    {
+      "from": "SCR-002",
+      "to": "SCR-001",
+      "trigger": "memory card / recommended chip",
+      "href": "/?dest=<slug>"
+    },
+    {
+      "from": "SCR-002",
+      "to": "SCR-001",
+      "trigger": "linked country chip",
+      "href": "/?safety=<code>"
+    },
+    {
+      "from": "SCR-002",
+      "to": "SCR-003",
+      "trigger": "CTA banner primary",
+      "href": "/travel-tools"
+    },
+    {
+      "from": "SCR-002",
+      "to": "SCR-004",
+      "trigger": "CTA banner secondary",
+      "href": "/mates"
+    },
+    {
+      "from": "SCR-003",
+      "to": "SCR-004",
+      "trigger": "mate post submitted/updated",
+      "href": "/mates?post=<id>"
+    },
+    {
+      "from": "SCR-003",
+      "to": "SCR-004",
+      "trigger": "browse posts / cannot edit",
+      "href": "/mates"
+    },
+    {
+      "from": "SCR-003",
+      "to": "SCR-005",
+      "trigger": "mate tab guest login",
+      "href": "/account?tab=login&next=/travel-tools?tab=mate"
+    },
+    {
+      "from": "SCR-003",
+      "to": "SCR-005",
+      "trigger": "mate tab adult verification",
+      "href": "/account?tab=profile"
+    },
+    {
+      "from": "SCR-004",
+      "to": "SCR-003",
+      "trigger": "write post / empty CTA",
+      "href": "/travel-tools?tab=mate"
+    },
+    {
+      "from": "SCR-004",
+      "to": "SCR-003",
+      "trigger": "edit own post",
+      "href": "/travel-tools?tab=mate&edit=<id>"
+    },
+    {
+      "from": "SCR-004",
+      "to": "SCR-003",
+      "trigger": "safety CTA banner",
+      "href": "/travel-tools"
+    },
+    {
+      "from": "SCR-004",
+      "to": "SCR-005",
+      "trigger": "guest apply/report/block",
+      "href": "/account?tab=login&next=/mates?post=<id>"
+    },
+    {
+      "from": "SCR-004",
+      "to": "SCR-005",
+      "trigger": "adult verification",
+      "href": "/account?tab=profile"
+    },
+    {
+      "from": "SCR-004",
+      "to": "SCR-005",
+      "trigger": "view in my activity",
+      "href": "/account?tab=activity"
+    },
+    {
+      "from": "SCR-004",
+      "to": "SCR-001",
+      "trigger": "country safety link",
+      "href": "/?safety=<code>"
+    },
+    {
+      "from": "SCR-005",
+      "to": "SCR-004",
+      "trigger": "own post / application item",
+      "href": "/mates?post=<id>"
+    },
+    {
+      "from": "SCR-005",
+      "to": "SCR-003",
+      "trigger": "new post CTA / edit own post",
+      "href": "/travel-tools?tab=mate[&edit=<id>]"
+    },
+    {
+      "from": "SCR-005",
+      "to": "SCR-001",
+      "trigger": "logout",
+      "href": "/"
+    },
+    {
+      "from": "TR-AUTH-CALLBACK",
+      "to": "SCR-005",
+      "trigger": "verification or reset handled",
+      "href": "/account?tab=profile|/account?tab=login&mode=reset"
+    },
+    {
+      "from": "TR-NOT-FOUND",
+      "to": "SCR-001",
+      "trigger": "home button",
+      "href": "/"
+    },
+    {
+      "from": "TR-ERROR",
+      "to": "SCR-001",
+      "trigger": "home button",
+      "href": "/"
+    }
+  ],
+  "external_links": [
+    {
+      "from": "SCR-001",
+      "to": "https://www.0404.go.kr/",
+      "rel": "noopener noreferrer",
+      "target": "_blank"
+    },
+    {
+      "from": "SCR-003",
+      "to": "outbound flight url (default https://www.google.com/travel/flights)",
+      "rel": "noopener noreferrer",
+      "target": "_blank",
+      "query_params": "forbidden"
+    },
+    {
+      "from": "SCR-003",
+      "to": "outbound hotel url (default https://www.booking.com/)",
+      "rel": "noopener noreferrer",
+      "target": "_blank",
+      "query_params": "forbidden"
+    },
+    {
+      "from": "SCR-002",
+      "to": "contact/sns links (https: or mailto: only)",
+      "rel": "noopener noreferrer",
+      "target": "_blank"
+    }
+  ],
+  "checks": {
+    "screen_count": 5,
+    "core_count": 4,
+    "auxiliary_count": 1,
+    "routes_unique": true,
+    "page_entries_unique": true,
+    "technical_routes_counted_as_screens": 0
+  }
+}
