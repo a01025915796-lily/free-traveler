@@ -4,7 +4,7 @@
 
 | Seq | Task ID | 제목 | Category | Implementation Status | Requirement Ref | Screen | Route | Page Entry | Depends On | Expected Files | Functional AC | Visual AC | Security/Privacy AC | Verify | Priority |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
-| 9 | DB-SCHEMA-BASE | Supabase 6개 테이블 스키마 | DB | IMPLEMENT | REQ-FUNC-031, REQ-FUNC-033, REQ-FUNC-035, REQ-FUNC-077, REQ-FUNC-080, REQ-NF-015 | 없음 | - | - | SETUP-PROJECT | `supabase/migrations/0001_schema.sql` | 1) 테이블 6개만: `profiles`, `mate_posts`, `mate_applications`, `user_blocks`, `reports`, `app_settings`<br>2) `profiles`에 이메일·생년월일 컬럼 없음(`is_adult`, `adult_verified_at`, `role`)<br>3) `mate_posts` `end_date >= start_date`, `capacity` 1~10, 길이 CHECK, `safety_agreed_at`·`policy_version`<br>4) `mate_applications` 상태 PENDING/ACCEPTED/REJECTED, `(post_id, applicant_id)` 부분 UNIQUE<br>5) `app_settings.value`는 `https://` CHECK<br>6) 여행지·안전·대표·감사 로그·미디어 테이블 없음 | 해당 없음 (화면 요소 없음) | 1) 개인정보 최소 수집(닉네임·연령대·선택 성별·스타일·자기소개)<br>2) 항공·숙소 입력값 테이블 없음 | `supabase db reset` (로컬) 성공, TEST-RLS-BASIC | P0 |
+| 9 | DB-SCHEMA-BASE | Supabase 6개 테이블 스키마 | DB | IMPLEMENT | REQ-FUNC-031, REQ-FUNC-033, REQ-FUNC-035, REQ-FUNC-077, REQ-FUNC-080, REQ-NF-015 | 없음 | - | - | SETUP-PROJECT | `supabase/migrations/0001_schema.sql`, `supabase/config.toml` | 1) 테이블 6개만: `profiles`, `mate_posts`, `mate_applications`, `user_blocks`, `reports`, `app_settings`<br>2) `profiles`에 이메일·생년월일 컬럼 없음(`is_adult`, `adult_verified_at`, `role`)<br>3) `mate_posts` `end_date >= start_date`, `capacity` 1~10, 길이 CHECK, `safety_agreed_at`·`policy_version`<br>4) `mate_applications` 상태 PENDING/ACCEPTED/REJECTED, `(post_id, applicant_id)` 부분 UNIQUE<br>5) `app_settings.value`는 `https://` CHECK<br>6) 여행지·안전·대표·감사 로그·미디어 테이블 없음 | 해당 없음 (화면 요소 없음) | 1) 개인정보 최소 수집(닉네임·연령대·선택 성별·스타일·자기소개)<br>2) 항공·숙소 입력값 테이블 없음 | `supabase db push` (원격 테스트 프로젝트, `supabase link` 후) 성공, TEST-RLS-BASIC | P0 |
 
 ## 1. Context
 
@@ -16,7 +16,7 @@ Expected Files는 아직 저장소에 없다. 이 Task에서 새로 만든다. �
 
 **범위**
 
-- Expected Files 1개 안에서 "Supabase 6개 테이블 스키마"을 구현한다
+- Expected Files 2개 안에서 "Supabase 6개 테이블 스키마"을 구현한다
 - §8~§10 AC를 모두 충족한다
 
 **범위 밖**
@@ -59,6 +59,7 @@ Expected Files는 아직 저장소에 없다. 이 Task에서 새로 만든다. �
 **생성**
 
 - `supabase/migrations/0001_schema.sql`
+- `supabase/config.toml` (`supabase init`으로 생성)
 
 이 목록 밖의 파일은 수정하지 않는다.
 
@@ -94,7 +95,7 @@ Expected Files는 아직 저장소에 없다. 이 Task에서 새로 만든다. �
 
 ## 12. Verify
 
-- `supabase db reset` (로컬) 성공, TEST-RLS-BASIC
+- `supabase db push` (원격 테스트 프로젝트, `supabase link` 후) 성공, TEST-RLS-BASIC
 - TEST-RLS-BASIC 실행: `npm run test:unit -- src/__tests__/rls` (테스트 계정 환경변수 필요)
 - `npm run lint` · `npm run typecheck` 오류 0
 - `git diff --name-only` 결과가 §7 Expected Files 안에 있음

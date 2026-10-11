@@ -249,8 +249,8 @@ AWS·EC2를 쓰지 않는다. 호스팅은 Vercel, DB·인증은 Supabase뿐이�
 |---|---|---|---|
 | 1 | `.env.local` 없음 — `NEXT_PUBLIC_SUPABASE_URL`, `NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY`, `NEXT_PUBLIC_SITE_URL` 값이 없음 | AUTH-SUPABASE, DB-ACCESS 이후 Supabase를 쓰는 Component·Page의 실행 확인 | Supabase 프로젝트를 만들고 값을 `.env.local`에 넣는다 (`.env*`는 Git 제외) |
 | 2 | E2E·RLS 테스트 계정 환경변수(`E2E_USER_A_*`, `E2E_USER_B_*`, `E2E_ADMIN_*`) 없음 | TEST-RLS-BASIC, E2E-MATE-AUTH | 이메일 인증을 마친 테스트 계정 3개를 만들고 관리자 `role` 지정 (DB-SEED-BASE 절차) |
-| 3 | Docker 없음 — 로컬 `supabase db reset` 실행 불가 | DB-SCHEMA-BASE, DB-RLS-BASE, DB-SEED-BASE의 Verify | Docker Desktop 설치, 또는 원격 테스트 프로젝트에 `supabase db push`로 검증하도록 Verify 변경 |
-| 4 | `supabase/config.toml` 없음, 어느 Task의 Expected Files에도 없음 | DB Task의 로컬 실행 | DB-SCHEMA-BASE Expected Files에 `supabase/config.toml`(`supabase init`) 추가 |
+| 3 | 원격 Supabase 테스트 프로젝트 없음 (DEC-019: Docker 대신 원격 프로젝트) | DB-SCHEMA-BASE, DB-RLS-BASE, DB-SEED-BASE의 Verify(`supabase db push`) | supabase.com에서 테스트 프로젝트 생성, `supabase login`, `supabase link` |
+| 4 | `supabase/config.toml` 없음 | `supabase link`·`db push` | 해결됨: DB-SCHEMA-BASE Expected Files에 배정(DEC-019), `supabase/.temp/`는 Git 제외 |
 | 5 | Git 원격 저장소 없음, GitHub CLI 미로그인 | SETUP-CI(Actions 실행), DEPLOY-VERCEL-SUPABASE(Vercel Git 연결·Preview) | GitHub 저장소 생성·push(`gh auth login` 후) — 사용자가 직접 |
 | 6 | Vercel 프로젝트 연결(`.vercel`) 없음 | DEPLOY-VERCEL-SUPABASE, Preview 승인이 필요한 Page Owner의 DoD | Vercel에서 GitHub 저장소 Import |
 

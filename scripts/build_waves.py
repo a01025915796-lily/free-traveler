@@ -63,7 +63,7 @@ CATEGORY_GROUP = {
 TECH_ROUTE_GROUP = {"TECH-ERROR-PAGES": 2, "TECH-AUTH-CALLBACK": 3}
 TEST_CATEGORIES = {"Unit Test", "Integration Test", "E2E Test", "Manual Check", "Release"}
 PREREQUISITES = {
-    3: "착수 차단 해결(`docs/ARCHITECTURE.md` §12): `.env.local`, Docker 또는 원격 테스트 프로젝트, `supabase/config.toml` 배정",
+    3: "착수 차단 해결(`docs/ARCHITECTURE.md` §12): 원격 Supabase 테스트 프로젝트(DEC-019), `.env.local` 3개 값, `supabase login`",
     9: "테스트 계정 3개(`E2E_USER_A_*`, `E2E_USER_B_*`, `E2E_ADMIN_*`), Git 원격 저장소·`gh auth login`(CI 확인)",
     10: "Vercel 프로젝트 연결",
 }

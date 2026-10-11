@@ -42,7 +42,7 @@ argument-hint: "WXX [--commit] | status | resume | dry-run WXX"
    - 이미 `completed`이면 "완료됨"으로 보고하고 끝낸다.
    - Checkpoint 대기이면 `/run-wave resume`을 안내하고 끝낸다.
 3. **앞 Wave** — 모두 `completed`여야 한다. `checkpoint_type`이 `preview`인 앞 Wave는 `checkpoint_result`가 `approved`여야 한다. 아니면 먼저 끝낼 Wave를 알리고 멈춘다.
-4. **선행 조건** — Wave의 `prerequisites`(`WAVE_PLAN.md` §2 선행 조건)를 실제로 확인한다. Supabase 그룹부터는 `docs/ARCHITECTURE.md` §12 착수 차단(`.env.local` 변수 이름, Docker 또는 원격 테스트 프로젝트, `supabase/config.toml`), 테스트 그룹은 테스트 계정 변수 이름·Git 원격, Release 그룹은 Vercel 연결을 확인한다. 값은 출력하지 않는다.
+4. **선행 조건** — Wave의 `prerequisites`(`WAVE_PLAN.md` §2 선행 조건)를 실제로 확인한다. Supabase 그룹부터는 `docs/ARCHITECTURE.md` §12 착수 차단(`.env.local` 변수 이름, 원격 Supabase 테스트 프로젝트 연결 `supabase link` — DEC-019), 테스트 그룹은 테스트 계정 변수 이름·Git 원격, Release 그룹은 Vercel 연결을 확인한다. 값은 출력하지 않는다.
    - 빠진 것이 있으면 Wave를 `blocked`로, `blocked_reason`에 빠진 항목을 기록하고 멈춘다. `dry-run`은 기록하지 않고 보고만 한다.
 5. **문서·Task 검사**
    - `python3 scripts/validate_inputs.py --no-snapshot`를 실행한다.

@@ -43,3 +43,6 @@ next-env.d.ts
 
 # oh-my-claudecode local state
 /.omc/
+
+# supabase CLI link state (project ref, local only)
+/supabase/.temp/

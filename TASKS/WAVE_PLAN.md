@@ -2,7 +2,7 @@
 
 | 항목 | 내용 |
 |---|---|
-| 생성 | 2026-10-11T20:18:46+09:00 — `python3 scripts/build_waves.py` (직접 고치지 않는다. Task를 바꾸면 Script를 다시 실행한다) |
+| 생성 | 2026-10-11T21:08:26+09:00 — `python3 scripts/build_waves.py` (직접 고치지 않는다. Task를 바꾸면 Script를 다시 실행한다) |
 | 입력 | `TASKS/TASK_MANIFEST.csv`, Task 상세 파일, `design-reference/SCREEN_ROUTE_CONTRACT.json` |
 | 진행 상태 | `TASKS/WAVE_STATE.json` |
 | 실행 명령 | `/run-wave <Wave ID>` (`.claude/commands/run-wave.md`) |
@@ -26,7 +26,7 @@
 |---|---:|---|---:|---|---|
 | W01 | 1 | Scaffold·문서·Harness 확인 | 1 | 없음 | 없음 |
 | W02 | 2 | 공통 UI·정적 데이터·Layout | 7 | 없음 | W01 completed |
-| W03 | 3 | Supabase Auth·6개 Table·기본 RLS | 7 | 없음 | W02 completed + 착수 차단 해결(`docs/ARCHITECTURE.md` §12): `.env.local`, Docker 또는 원격 테스트 프로젝트, `supabase/config.toml` 배정 |
+| W03 | 3 | Supabase Auth·6개 Table·기본 RLS | 7 | 없음 | W02 completed + 착수 차단 해결(`docs/ARCHITECTURE.md` §12): 원격 Supabase 테스트 프로젝트(DEC-019), `.env.local` 3개 값, `supabase login` |
 | W04 | 4 | SCR-001 메인 (1/2) | 5 | 없음 | W03 completed |
 | W05 | 4 | SCR-001 메인 (2/2) | 4 | PREVIEW — 사람이 Desktop 1440·Mobile 390 확인 후 승인 | W04 completed |
 | W06 | 5 | SCR-002 대표 소개 | 3 | PREVIEW — 사람이 Desktop 1440·Mobile 390 확인 후 승인 | W05 completed(Checkpoint 승인) |

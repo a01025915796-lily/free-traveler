@@ -2,7 +2,7 @@
 
 | 항목 | 내용 |
 |---|---|
-| 생성 | 2026-10-11T20:18:46+09:00 — `python3 scripts/build_waves.py` |
+| 생성 | 2026-10-11T21:08:26+09:00 — `python3 scripts/build_waves.py` |
 | Task 수 | 61 |
 | 의존 간선 수 | 177 |
 | 순환 의존성 | 0 |

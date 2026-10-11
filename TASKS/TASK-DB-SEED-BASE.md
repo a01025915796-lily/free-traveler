@@ -4,7 +4,7 @@
 
 | Seq | Task ID | 제목 | Category | Implementation Status | Requirement Ref | Screen | Route | Page Entry | Depends On | Expected Files | Functional AC | Visual AC | Security/Privacy AC | Verify | Priority |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
-| 11 | DB-SEED-BASE | 기본 설정·테스트 데이터 시드 | DB | IMPLEMENT | REQ-FUNC-016, REQ-FUNC-024, REQ-FUNC-077 | 없음 | - | - | DB-RLS-BASE | `supabase/seed.sql`, `docs/checks/TEST_ACCOUNTS.md` | 1) `app_settings`에 항공·숙소 기본 외부 URL 2건<br>2) 로컬·Preview용 공개 모집글 예시(테스트 계정 소유)<br>3) E2E 테스트 계정(회원 A·B·관리자) 준비 절차를 문서화하고 관리자 `role` 지정 SQL 포함 | 해당 없음 (화면 요소 없음) | 1) 실제 비밀번호·키를 저장소에 쓰지 않음 | `supabase db reset` 후 `select * from app_settings` 2건 | P1 |
+| 11 | DB-SEED-BASE | 기본 설정·테스트 데이터 시드 | DB | IMPLEMENT | REQ-FUNC-016, REQ-FUNC-024, REQ-FUNC-077 | 없음 | - | - | DB-RLS-BASE | `supabase/seed.sql`, `docs/checks/TEST_ACCOUNTS.md` | 1) `app_settings`에 항공·숙소 기본 외부 URL 2건<br>2) 로컬·Preview용 공개 모집글 예시(테스트 계정 소유)<br>3) E2E 테스트 계정(회원 A·B·관리자) 준비 절차를 문서화하고 관리자 `role` 지정 SQL 포함 | 해당 없음 (화면 요소 없음) | 1) 실제 비밀번호·키를 저장소에 쓰지 않음 | `supabase db push --include-seed` 후 원격 프로젝트에서 `select * from app_settings` 2건 | P1 |
 
 ## 1. Context
 
@@ -86,7 +86,7 @@ Expected Files는 아직 저장소에 없다. 이 Task에서 새로 만든다. �
 
 ## 12. Verify
 
-- `supabase db reset` 후 `select * from app_settings` 2건
+- `supabase db push --include-seed` 후 원격 프로젝트에서 `select * from app_settings` 2건
 - `npm run lint` · `npm run typecheck` 오류 0
 - `git diff --name-only` 결과가 §7 Expected Files 안에 있음
 

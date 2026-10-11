@@ -4,7 +4,7 @@
 
 | Seq | Task ID | 제목 | Category | Implementation Status | Requirement Ref | Screen | Route | Page Entry | Depends On | Expected Files | Functional AC | Visual AC | Security/Privacy AC | Verify | Priority |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
-| 6 | DATA-DESTINATIONS | 여행지 정적 데이터 | Data | IMPLEMENT | REQ-FUNC-001, REQ-FUNC-004, REQ-FUNC-008, REQ-FUNC-074, REQ-NF-026 | 없음 | - | - | SETUP-PROJECT | `src/types/content.ts`, `src/data/countries.ts`, `src/data/destinations.ts` | 1) 국내 10곳, 해외 15개국 30개 도시를 `src/data`에 정적 데이터로 작성(DB 사용 안 함)<br>2) 타입으로 필수 필드 강제: 소개 300자+, 명소 5+, 추천·비추천 시기, 1일·3일 일정, 예산, 교통, 음식 3+, 에티켓 3+, 출처 1+, 수정일, `scope`, `countryCode`, 테마·계절·권장 기간<br>3) 이미지는 인터넷 URL + 실제 장소 설명 `alt`만 저장<br>4) 메인 추천용 국내 6·해외 6 지정, 테마 6종 정의 | 해당 없음 (화면 요소 없음) | 1) 출처 URL은 `https:`만 | `npm run test:unit -- content` (UNIT-CONTENT-DATA) | P0 |
+| 6 | DATA-DESTINATIONS | 여행지 정적 데이터 | Data | IMPLEMENT | REQ-FUNC-001, REQ-FUNC-004, REQ-FUNC-008, REQ-FUNC-074, REQ-NF-026 | 없음 | - | - | SETUP-PROJECT | `src/types/content.ts`, `src/data/countries.ts`, `src/data/destinations.ts`, `next.config.ts` | 1) 국내 10곳, 해외 15개국 30개 도시를 `src/data`에 정적 데이터로 작성(DB 사용 안 함)<br>2) 타입으로 필수 필드 강제: 소개 300자+, 명소 5+, 추천·비추천 시기, 1일·3일 일정, 예산, 교통, 음식 3+, 에티켓 3+, 출처 1+, 수정일, `scope`, `countryCode`, 테마·계절·권장 기간<br>3) 이미지는 인터넷 URL + 실제 장소 설명 `alt`만 저장. 사진은 Wikimedia Commons의 퍼블릭 도메인·CC0 파일만 쓰고(DEC-018) `next.config.ts` `images.remotePatterns`에 `upload.wikimedia.org`·`thumb.wikimedia.org`를 추가<br>4) 메인 추천용 국내 6·해외 6 지정, 테마 6종 정의 | 해당 없음 (화면 요소 없음) | 1) 출처 URL은 `https:`만 | `npm run test:unit -- content` (UNIT-CONTENT-DATA) | P0 |
 
 ## 1. Context
 
@@ -16,7 +16,7 @@ Expected Files는 아직 저장소에 없다. 이 Task에서 새로 만든다. �
 
 **범위**
 
-- Expected Files 3개 안에서 "여행지 정적 데이터"을 구현한다
+- Expected Files 4개 안에서 "여행지 정적 데이터"을 구현한다
 - §8~§10 AC를 모두 충족한다
 
 **범위 밖**
@@ -61,13 +61,17 @@ Expected Files는 아직 저장소에 없다. 이 Task에서 새로 만든다. �
 - `src/data/countries.ts`
 - `src/data/destinations.ts`
 
+**수정** (현재 저장소에 있음)
+
+- `next.config.ts` (`images.remotePatterns`에 `upload.wikimedia.org`·`thumb.wikimedia.org` 추가만)
+
 이 목록 밖의 파일은 수정하지 않는다.
 
 ## 8. Functional AC
 
 - 국내 10곳, 해외 15개국 30개 도시를 `src/data`에 정적 데이터로 작성(DB 사용 안 함)
 - 타입으로 필수 필드 강제: 소개 300자+, 명소 5+, 추천·비추천 시기, 1일·3일 일정, 예산, 교통, 음식 3+, 에티켓 3+, 출처 1+, 수정일, `scope`, `countryCode`, 테마·계절·권장 기간
-- 이미지는 인터넷 URL + 실제 장소 설명 `alt`만 저장
+- 이미지는 인터넷 URL + 실제 장소 설명 `alt`만 저장. 사진은 Wikimedia Commons의 퍼블릭 도메인·CC0 파일만 쓰고(DEC-018) `next.config.ts` `images.remotePatterns`에 `upload.wikimedia.org`·`thumb.wikimedia.org`를 추가
 - 메인 추천용 국내 6·해외 6 지정, 테마 6종 정의
 
 ## 9. Visual AC

@@ -29,6 +29,8 @@
 | DEC-015 | Playwright Smoke는 Page Owner·E2E Task에서만 실행, 나머지는 W10까지 보류 | 확정 | 2026-10-11 |
 | DEC-016 | Task 감사 보완: 테스트 Ref 연결, Page Owner 상태 AC, Playwright 핵심 흐름 7개 | 확정 | 2026-10-11 |
 | DEC-017 | Wave 계획은 `scripts/build_waves.py`가 생성하고 그 산출물을 정본으로 한다 | 확정 | 2026-10-11 |
+| DEC-018 | 콘텐츠 사진은 Wikimedia Commons의 퍼블릭 도메인·CC0 파일을 쓴다 | 확정 | 2026-10-11 |
+| DEC-019 | Supabase 검증은 Docker 대신 원격 테스트 프로젝트(`supabase db push`)로 한다 | 확정 | 2026-10-11 |
 
 ---
 
@@ -201,3 +203,23 @@
 | 이유 | 손으로 쓴 W01~W11 계획은 Task 수정 때마다 어긋날 수 있다. 순환 의존성·Wave 역순 의존·Page Owner 위치·파일 충돌을 Script로 검사해 재현 가능하게 만든다 |
 | 영향 | 2026-10-11 생성 결과: 13개 Wave(W01 1 · W02 7 · W03 7 · W04 5 · W05 4 · W06 3 · W07 4 · W08 4 · W09 6 · W10 5 · W11 6 · W12 6 · W13 3), 순환 의존성 0. Page Owner: SCR-001 W05, SCR-002 W06, SCR-003 W08, SCR-004 W09, SCR-005 W10(각 Wave 마지막), Release W13. 상태 값은 소문자(`pending`·`in_progress`·`blocked`·`completed`, Task는 `failed` 추가)로 바뀌고 `preview_approved_at` 대신 `checkpoint_result`·`checkpoint_at`을 쓴다. `/run-wave`·`/prepare-task`·`/implement-task`·`/release-check`·Skill·`CLAUDE.md`·`PROJECT_STATE.md`를 이에 맞췄다. DEC-011·DEC-015에 적힌 예전 Wave 번호(W04·W05·W06~W09·W10·W11)는 이 결정으로 대체한다. Wave당 4개 미만인 W01·W06·W13은 그룹 Task 수가 적어 경고만 남긴다. `audit_tasks.py`는 Manifest를 다시 쓸 때 `wave_id` 열을 보존한다 |
 | 근거 | `scripts/build_waves.py`, `TASKS/WAVE_PLAN.md`, `TASKS/TASK_DAG.md` |
+
+## DEC-018 콘텐츠 사진은 Wikimedia Commons의 퍼블릭 도메인·CC0 파일을 쓴다
+
+| 항목 | 내용 |
+|---|---|
+| 상태 | 확정 (2026-10-11, 사용자 선택) |
+| 결정 | 여행지·대표 소개 등 정적 데이터의 사진 URL은 Wikimedia Commons에서 라이선스가 퍼블릭 도메인 또는 CC0인 파일만 쓴다. `upload.wikimedia.org`·`thumb.wikimedia.org`(Commons 썸네일 호스트)를 `next.config.ts` `images.remotePatterns`에 추가한다(DATA-DESTINATIONS Expected Files에 `next.config.ts` 추가) |
+| 이유 | 허용 호스트였던 Unsplash·Pexels는 API 키 없이 실제 사진을 조회할 수 없어(401·Authorization required), 존재를 확인하지 않은 URL을 넣게 된다. Commons API는 키 없이 파일 존재와 라이선스를 확인할 수 있다. 퍼블릭 도메인·CC0만 쓰면 출처 표기 의무가 없어 REQ-FUNC-007·061·NF-029(EXCLUDED, 이미지는 URL과 `alt`만 저장)와 충돌하지 않는다 |
+| 영향 | 사진은 Commons API가 주는 썸네일 URL(`thumb.wikimedia.org/wikipedia/commons/thumb/...`, 원본이 작으면 `upload.wikimedia.org`)을 쓴다. Unsplash·Pexels·한국관광공사 호스트는 그대로 허용한다. CC BY·CC BY-SA 등 출처 표기가 필요한 파일은 쓰지 않는다 |
+| 근거 | `docs/01_PRD.md` REF-05·06, `docs/PROJECT_SCOPE.md` §5 이미지 규칙, Commons API `imageinfo` `extmetadata.LicenseShortName` |
+
+## DEC-019 Supabase 검증은 Docker 대신 원격 테스트 프로젝트로 한다
+
+| 항목 | 내용 |
+|---|---|
+| 상태 | 확정 (2026-10-11, 사용자 선택 A안) |
+| 결정 | 로컬 Docker(`supabase start`·`db reset`) 대신 supabase.com의 원격 테스트 프로젝트에 `supabase link` 후 `supabase db push`(시드는 `--include-seed`)로 마이그레이션을 적용·검증한다. `supabase/config.toml`(`supabase init`)은 DB-SCHEMA-BASE Expected Files에 배정하고, `supabase/.temp/`(link 상태)는 Git에서 제외한다 |
+| 이유 | 개발 환경에 Docker가 없고, 같은 원격 구성을 이후 Vercel 배포(DEPLOY-VERCEL-SUPABASE)에서도 쓴다 |
+| 영향 | DB-SCHEMA-BASE·DB-SEED-BASE Verify 문구 변경. W03 선행 조건: 원격 테스트 프로젝트 생성, `.env.local`에 `NEXT_PUBLIC_SITE_URL`·`NEXT_PUBLIC_SUPABASE_URL`·`NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY`, 사용자의 `supabase login`. PROJECT_STATE Deferred #1 해소. 원격 DB에 적용하는 명령은 테스트 프로젝트에만 쓴다(Production 프로젝트 아님) |
+| 근거 | `docs/ARCHITECTURE.md` §12 #3·#4 |

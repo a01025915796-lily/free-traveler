@@ -1,6 +1,6 @@
 {
   "schema_version": "traveler-wave-state-v2",
-  "generated_at": "2026-10-11T20:18:46+09:00",
+  "generated_at": "2026-10-11T21:08:26+09:00",
   "generated_by": "scripts/build_waves.py",
   "status_values": {
     "wave": [
@@ -63,57 +63,57 @@
         "DATA-REPRESENTATIVE",
         "TECH-ERROR-PAGES"
       ],
-      "status": "pending",
+      "status": "completed",
       "checkpoint_required": false,
       "checkpoint_type": null,
       "checkpoint_result": null,
       "checkpoint_at": null,
       "prerequisites": null,
-      "started_at": null,
-      "finished_at": null,
+      "started_at": "2026-10-11T20:22:56+09:00",
+      "finished_at": "2026-10-11T21:03:38+09:00",
       "blocked_reason": null,
       "tasks": {
         "GLOBAL-DESIGN-TOKENS": {
-          "status": "pending",
-          "finished_at": null,
-          "verify": null,
-          "note": null
+          "status": "completed",
+          "finished_at": "2026-10-11T20:24:12+09:00",
+          "verify": "npm run lint PASS · npm run typecheck PASS · npm run build PASS · next dev에서 서빙 CSS에 --color-ink·--color-canvas·--font-sans·:focus-visible 확인 · Unit 해당 없음 · Playwright 미실행(Global Task, DEC-015, 보류 — E2E-PUBLIC-SMOKE에서 검증) · Diff: src/app/globals.css",
+          "note": "Tailwind 기본 색·radius·shadow를 초기화해 D-001 값만 남김. 남은 prefers-color-scheme 규칙은 Starter page.tsx의 dark: 클래스(PAGE-SCR001에서 제거). --font-inter 변수는 GLOBAL-LAYOUT이 layout.tsx에서 정의 · 재수정(GLOBAL-UI-KIT 중 발견): 글자 크기 유틸리티 text-body가 색 토큰 --color-body와 같은 이름이라 크기와 색이 함께 적용됨 → text-body-md로 이름 변경. 재검증 lint·typecheck·build PASS"
         },
         "GLOBAL-UI-KIT": {
-          "status": "pending",
-          "finished_at": null,
-          "verify": null,
-          "note": null
+          "status": "completed",
+          "finished_at": "2026-10-11T20:27:37+09:00",
+          "verify": "npm run lint PASS · npm run typecheck PASS · npm run build PASS · 빌드 CSS에서 토큰 유틸리티(rounded-card·shadow-raised·max-w-drawer·backdrop:bg-scrim 등) 생성 확인 · dangerouslySetInnerHTML·alert·confirm 사용 0 · Unit 해당 없음 · 런타임 동작(포커스 이동·가두기·Esc·방향키·axe)은 렌더할 페이지가 없어 미실행: 보류 — E2E-PUBLIC-SMOKE(axe)·MANUAL-CHECK(MAN-02)에서 검증 · Diff: src/components/ui/* 14개",
+          "note": "Drawer·Modal은 네이티브 <dialog> showModal 기반(open 제어형 → URL query 연동은 사용처에서). 추가 export: IconButton(Button.tsx), LinkChip·StaticChip(Chip.tsx), SoftCard(Card.tsx), useDialog·DialogCloseButton(Modal.tsx), TabPanel(Tabs.tsx), SemanticIcon·toneLabel(Alert.tsx), ToastProvider·useToast(Toast.tsx). ToastProvider는 GLOBAL-LAYOUT에서 layout.tsx에 장착"
         },
         "GLOBAL-LAYOUT": {
-          "status": "pending",
-          "finished_at": null,
-          "verify": null,
-          "note": null
+          "status": "completed",
+          "finished_at": "2026-10-11T20:29:54+09:00",
+          "verify": "npm run lint PASS · npm run typecheck PASS · npm run build PASS · next start 후 / HTML 검사 11항목 PASS(lang=ko, 본문 건너뛰기, main#main-content, 내비 4+계정, aria-current, 정책 4종, 외교부 링크 target/rel, 하단 띠, 기본 title, aria-live, 메뉴 버튼) · 정책 Modal 열기·Back 닫기·320px·axe는 브라우저 필요: 보류 — E2E-PUBLIC-SMOKE에서 검증 · Diff: Expected Files 6개",
+          "note": "정책 Modal 상태는 ?policy=<id> URL(네이티브 history, useSearchParams 없이)로 Back 닫힘. Header 계정 진입은 '계정' 링크 하나 — 04 계획의 회원 아바타·닉네임 표시는 이 Task 범위(세션 없음) 밖이며 이후 SiteHeader를 맡은 Task가 없음. 루트 layout의 title.template은 같은 segment인 src/app/page.tsx에는 적용되지 않음(PAGE-SCR001은 title.absolute 또는 전체 제목 사용)"
         },
         "DATA-DESTINATIONS": {
-          "status": "pending",
-          "finished_at": null,
-          "verify": null,
-          "note": null
+          "status": "completed",
+          "finished_at": "2026-10-11T20:57:43+09:00",
+          "verify": "npm run lint PASS · npm run typecheck PASS · npm run build PASS · 생성 시 검사: 40곳(국내 10, 해외 15개국 30), 소개 300자+·명소 5+·음식 3+·에티켓 3+ 전부 충족 · 사진 URL 40개 HTTP 200 · 출처 URL 접속 확인(정부 관광청 일부는 봇 차단 403) · Unit 보류 — UNIT-CONTENT-DATA에서 검증 · Diff: Expected Files 4개",
+          "note": "사진은 Wikimedia Commons PD·CC0만(DEC-018, 사용자 선택). Commons 썸네일 호스트가 thumb.wikimedia.org라 upload·thumb 두 호스트를 next.config.ts에 추가(Task 문서·DEC-018 반영). 추천 국내 6·해외 6, 테마 6종 정의. 콘텐츠(예산·교통 등)는 편집 초안이며 게시 전 사람 검수 권장"
         },
         "DATA-SAFETY": {
-          "status": "pending",
-          "finished_at": null,
-          "verify": null,
-          "note": null
+          "status": "completed",
+          "finished_at": "2026-10-11T21:00:33+09:00",
+          "verify": "npm run lint PASS · npm run typecheck PASS · npm run build PASS · 15개국 작성(타입으로 8개 카테고리·경보 범위·긴급연락처·출처·verifiedAt·편집자 강제) · Unit 보류 — UNIT-CONTENT-DATA에서 검증 · Diff: src/data/safety.ts",
+          "note": "주의: 경보 단계·적용 범위·재외공관 링크는 작성자 지식 기반 초안. 외교부 경보 페이지는 스크립트 렌더링, 재외공관 사이트는 봇 차단(307)이라 자동 대조 불가 → 게시 전 외교부 원문 대조와 verifiedAt 갱신 필요(PROJECT_STATE Deferred). 현지 긴급번호·영사콜센터 번호는 일반 공개 정보. 메인 노출 6개국: JP·TH·VN·PH·FR·US"
         },
         "DATA-REPRESENTATIVE": {
-          "status": "pending",
-          "finished_at": null,
-          "verify": null,
-          "note": null
+          "status": "completed",
+          "finished_at": "2026-10-11T21:02:47+09:00",
+          "verify": "npm run lint PASS · npm run typecheck PASS · npm run build PASS · 사진 13장 HTTP 200 · 방문 국가 30(아시아 12·유럽 12·북미 3·오세아니아 3)·Timeline 7·Gallery 8·기억 4·추천 6(slug 존재) · Unit 보류 — UNIT-CONTENT-DATA에서 검증 · Diff: src/data/curator.ts",
+          "note": "PRD 6-1·6-2 전문 수록. 04 §6.2 초안 문구(여행 이유·Timeline·기억 문장)는 CURATOR_CONTENT_CONFIRMED=false로 표시, 대표 확인 후 확정 필요. 문의·SNS 값은 비어 있어 렌더링되지 않음(대표가 제공 시 입력). 사진은 Commons PD·CC0, 대표 사진은 얼굴이 보이지 않는 뒷모습"
         },
         "TECH-ERROR-PAGES": {
-          "status": "pending",
-          "finished_at": null,
-          "verify": null,
-          "note": null
+          "status": "completed",
+          "finished_at": "2026-10-11T21:03:38+09:00",
+          "verify": "npm run lint PASS · npm run typecheck PASS · npm run build PASS · next start에서 /no-such-page → HTTP 404, 문구·홈으로·여행지 둘러보기·공통 Header/Footer 확인 · error.tsx는 Next 16.4 규약(retry) 사용, 오류 상세 미노출 · error 화면 실제 렌더·axe: 보류 — E2E-PUBLIC-SMOKE에서 검증 · Diff: Expected Files 2개",
+          "note": "여행지 둘러보기 링크는 /?scope=all (LOGIC-SEARCH-FILTER가 허용 값으로 처리해야 함)"
         }
       }
     },
@@ -135,7 +135,7 @@
       "checkpoint_type": null,
       "checkpoint_result": null,
       "checkpoint_at": null,
-      "prerequisites": "착수 차단 해결(`docs/ARCHITECTURE.md` §12): `.env.local`, Docker 또는 원격 테스트 프로젝트, `supabase/config.toml` 배정",
+      "prerequisites": "착수 차단 해결(`docs/ARCHITECTURE.md` §12): 원격 Supabase 테스트 프로젝트(DEC-019), `.env.local` 3개 값, `supabase login`",
       "started_at": null,
       "finished_at": null,
       "blocked_reason": null,
