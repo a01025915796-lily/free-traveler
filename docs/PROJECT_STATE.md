@@ -3,7 +3,7 @@
 | 항목 | 내용 |
 |---|---|
 | 기준일 | 2026-10-11 |
-| 마지막 갱신 | 2026-10-11 — W02 completed (`/run-wave W02`) |
+| 마지막 갱신 | 2026-10-11 — W03 completed (`/run-wave W03`) |
 | 갱신 주체 | `/run-wave`가 Wave 실행·Checkpoint·resume이 끝날 때 갱신한다. `/release-check --record`가 FINAL을 갱신한다. 사람이 고쳐도 되지만, Task·Wave 상태의 정본은 `TASKS/WAVE_STATE.json`이다 |
 
 이 문서는 프로젝트 현재 상태를 한 장으로 요약한다. 다른 문서와 다르면 다음 정본을 따른다.
@@ -18,12 +18,12 @@
 | Harness Schema | `traveler-screen-route-v1` (`design-reference/SCREEN_ROUTE_CONTRACT.json`) |
 | Design Version | D-001 `1.0.0` LOCKED (2026-10-09), `design-reference/D-001/DESIGN.md` sha256 `6282ae1e…fcec4` |
 | Scope Mode | IMPLEMENT/EXCLUDED — 요구사항 114건 중 IMPLEMENT 88, EXCLUDED 26 (`docs/PROJECT_SCOPE.md` §9·§10, DEC-014) |
-| Current Wave | W02 completed. 다음 Wave는 W03(Supabase Auth·6개 Table·기본 RLS 7개) — 착수 차단 해결 필요(§4) |
+| Current Wave | W03 completed. 다음 Wave는 W04(SCR-001 메인 1/2, 5개) |
 | Current Task | 없음 |
-| Completed Tasks | 8 / 61 (W01 1, W02 7) |
+| Completed Tasks | 15 / 61 (W01 1, W02 7, W03 7) |
 | Blocked Tasks | 0 (Task 단위 `blocked` 기록 없음). 착수 차단 6건은 §4 참고(W03부터 필요) |
 | Latest CI | 없음 — `.github/workflows/ci.yml` 미작성(SETUP-CI, W11). Git 원격 `origin` 연결됨(github.com/a01025915796-lily/free-traveler). 로컬: lint·typecheck·build PASS(2026-10-11, W01) |
-| Supabase State | 미구성 — `@supabase/supabase-js`·`@supabase/ssr` 설치됨. `.env.local`은 있으나 비어 있음, Supabase 프로젝트 미연결, `supabase/` 디렉터리 없음, 마이그레이션 미작성. Supabase CLI는 설치됨. 검증은 원격 테스트 프로젝트로 한다(DEC-019) |
+| Supabase State | 원격 테스트 프로젝트 free-traveler(ap-northeast-1) link 완료(DEC-019). 마이그레이션 0001(6개 테이블)·0002(RLS, 정책 18개) 적용, seed 적용(app_settings 2건). 비로그인 API 검사 12항목 기대대로. 테스트 계정 3개 미생성(`docs/checks/TEST_ACCOUNTS.md` 절차, W11 전) |
 | Vercel Preview URL | 없음 — Vercel 프로젝트 미연결(`.vercel` 없음). 연결 전 Page Owner Wave는 로컬 `npm run dev`로 확인 |
 | Screen Checkpoints | 모두 PENDING (§2) |
 | Playwright State | (W02) UI Kit·Layout은 브라우저 동작 검증을 E2E로 보류. `@playwright/test` 1.64·`@axe-core/playwright` 설치, `playwright.config.ts`(chromium 프로젝트 하나, Desktop 1440×900, Mobile 390×844는 `test.use`) 작성. 브라우저 바이너리는 미설치(`npx playwright install chromium` 필요). spec 3개는 W12 E2E Task가 만든다(핵심 흐름 FLOW-01~07). Chromium Smoke만 (DEC-009) |
@@ -61,19 +61,18 @@ Wave 번호는 `TASKS/WAVE_PLAN.md`(build_waves.py 생성) 기준이다. W01~W02
 
 | # | 차단 | 현재 | 해결 주체 |
 |---|---|---|---|
-| 1 | `.env.local`(`NEXT_PUBLIC_SITE_URL`, `NEXT_PUBLIC_SUPABASE_URL`, `NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY`) | 없음 | 사용자 |
-| 2 | 테스트 계정 3개(`E2E_USER_A_*`, `E2E_USER_B_*`, `E2E_ADMIN_*`) | 없음 | 사용자 |
-| 3 | 원격 Supabase 테스트 프로젝트 + `supabase login` (DEC-019) | 미생성 | 사용자 |
+| 1 | `.env.local`(`NEXT_PUBLIC_SITE_URL`, `NEXT_PUBLIC_SUPABASE_URL`, `NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY`) | 해결 — 3개 값 입력, anon 키 확인 | - |
+| 2 | 테스트 계정 3개(`E2E_USER_A_*`, `E2E_USER_B_*`, `E2E_ADMIN_*`) | 없음 — `docs/checks/TEST_ACCOUNTS.md` 절차로 생성(W11 전) | 사용자 |
+| 3 | 원격 Supabase 테스트 프로젝트 + `supabase login` (DEC-019) | 해결 — free-traveler 생성, CLI 로그인·link 완료 | - |
 | 4 | `supabase/config.toml` 배정 | 해결 — DB-SCHEMA-BASE (DEC-019) | - |
 | 5 | Git 원격 저장소, `gh auth login` | 원격 연결됨, `gh` 로그인 미확인 | 사용자 |
 | 6 | Vercel 프로젝트 연결 | 미연결 | 사용자 |
 
 ## 5. Next Action
 
-1. (권장) W02 변경을 Commit한다.
-2. W03 착수 차단(§4 #1 `.env.local` 값, #3 원격 테스트 프로젝트·`supabase login`)을 해결한다.
-3. `/run-wave dry-run W03` → `/run-wave W03`.
-4. W03(Supabase) 전에 §4 착수 차단 #1·#3·#4와 Deferred #1을 해결한다.
+1. (권장) W03 변경을 Commit한다.
+2. `/run-wave dry-run W04` → `/run-wave W04`(SCR-001 메인 Component 1/2). W04·W05는 추가 착수 차단 없음.
+3. W11 전까지 테스트 계정 3개를 만든다(`docs/checks/TEST_ACCOUNTS.md`).
 
 ## 6. 변경 이력
 
@@ -84,4 +83,5 @@ Wave 번호는 `TASKS/WAVE_PLAN.md`(build_waves.py 생성) 기준이다. W01~W02
 | 2026-10-11 | `scripts/build_waves.py`로 Wave 재생성(13개, DEC-017). Checkpoint Wave 번호·착수 차단 시점 갱신 | Claude (사용자 요청) |
 | 2026-10-11 | SETUP-PROJECT Expected Files에 `package-lock.json`·`.gitignore` 추가. W01 completed(SETUP-PROJECT) | `/run-wave W01` |
 | 2026-10-11 | DEC-019 원격 Supabase(A안) 반영, Deferred #1 해소 | Claude (사용자 요청) |
+| 2026-10-11 | W03 completed(7 Task). 원격 DB에 스키마·RLS·시드 적용 | `/run-wave W03` |
 | 2026-10-11 | W02 completed(7 Task). DEC-018(Commons PD·CC0 사진), DATA-DESTINATIONS Expected Files에 `next.config.ts` 추가. Deferred #5~#7 추가 | `/run-wave W02` |

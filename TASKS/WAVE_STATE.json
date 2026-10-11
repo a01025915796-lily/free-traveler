@@ -130,57 +130,57 @@
         "DB-ACCESS",
         "TECH-AUTH-CALLBACK"
       ],
-      "status": "pending",
+      "status": "completed",
       "checkpoint_required": false,
       "checkpoint_type": null,
       "checkpoint_result": null,
       "checkpoint_at": null,
       "prerequisites": "착수 차단 해결(`docs/ARCHITECTURE.md` §12): 원격 Supabase 테스트 프로젝트(DEC-019), `.env.local` 3개 값, `supabase login`",
-      "started_at": null,
-      "finished_at": null,
+      "started_at": "2026-10-11T21:16:24+09:00",
+      "finished_at": "2026-10-11T21:26:32+09:00",
       "blocked_reason": null,
       "tasks": {
         "DB-SCHEMA-BASE": {
-          "status": "pending",
-          "finished_at": null,
-          "verify": null,
-          "note": null
+          "status": "completed",
+          "finished_at": "2026-10-11T21:18:32+09:00",
+          "verify": "supabase init(config.toml) · supabase link(free-traveler 테스트 프로젝트) · supabase db push --dry-run → 0001 적용 예정 확인 · supabase db push PASS · migration list local=remote 0001 · 원격 확인: public 테이블 6개(app_settings, mate_applications, mate_posts, profiles, reports, user_blocks), email·birth 컬럼 0, 부분 UNIQUE 인덱스 존재 · npm run lint PASS · typecheck PASS · TEST-RLS-BASIC 보류 — TEST-RLS-BASIC(W12)에서 검증 · Diff: supabase/config.toml, supabase/migrations/0001_schema.sql",
+          "note": "supabase init이 만든 supabase/.gitignore는 Expected Files 밖이라 삭제(루트 .gitignore가 /supabase/.temp 제외). 값 목록(age_band·gender·reason_code·travel_styles 제한)은 기획 문서에 없어 SQL 주석에 정의. DB 비밀번호 없이 CLI 토큰으로 push됨. RLS는 DB-RLS-BASE에서 켬"
         },
         "DB-RLS-BASE": {
-          "status": "pending",
-          "finished_at": null,
-          "verify": null,
-          "note": null
+          "status": "completed",
+          "finished_at": "2026-10-11T21:20:08+09:00",
+          "verify": "supabase db push(0002_rls.sql) PASS · 원격: 6개 테이블 relrowsecurity=true, public 정책 18개 · anon REST 검사 12항목 기대대로(공개 컬럼 select 200, is_adult·role select 401, applications·reports·blocks select 401, posts·app_settings insert 401, private 함수 RPC 미노출 404, get_my_profile anon 401) · 로그인 사용자 시나리오: 보류 — TEST-RLS-BASIC(W12, 테스트 계정 필요)에서 검증 · Diff: supabase/migrations/0002_rls.sql",
+          "note": "공개 컬럼 제한은 컬럼 권한, role·adult_verified_at·handled_by·updated_by는 트리거로 서버가 채움(사용자 변경 불가). 보조 함수는 API 비노출 private 스키마. 본인 전체 프로필은 rpc get_my_profile()(authenticated)"
         },
         "DB-SEED-BASE": {
-          "status": "pending",
-          "finished_at": null,
-          "verify": null,
-          "note": null
+          "status": "completed",
+          "finished_at": "2026-10-11T21:21:07+09:00",
+          "verify": "supabase db push --include-seed PASS · 원격 select: app_settings 2건(flight=https://www.google.com/travel/flights, hotel=https://www.booking.com/) · 예시 모집글 0건(테스트 계정 프로필 없음 — 조건부 시드, 의도대로) · 비밀번호·키·이메일 미기재 확인 · Diff: supabase/seed.sql, docs/checks/TEST_ACCOUNTS.md",
+          "note": "테스트 계정 3개는 사용자가 TEST_ACCOUNTS.md 절차로 생성(W11 전). 생성 후 시드 재실행 시 예시 모집글 2건 생성. 관리자 role 지정은 SQL 편집기에서 트리거 잠시 해제 후 실행"
         },
         "AUTH-SUPABASE": {
-          "status": "pending",
-          "finished_at": null,
-          "verify": null,
-          "note": null
+          "status": "completed",
+          "finished_at": "2026-10-11T21:22:32+09:00",
+          "verify": "npm run lint PASS · npm run typecheck PASS · npm run build PASS(ƒ Proxy 포함) · safeNextPath 12케이스 PASS(외부 URL·//·/\\·javascript:·잘못된 인코딩·제어문자 차단) · next start: GET / 200, 깨진 세션 쿠키로도 200 · E2E-MATE-AUTH 보류 — E2E-MATE-AUTH(W12)에서 검증 · Diff: Expected Files 4개",
+          "note": "server-only 패키지 미설치(설치 시 package.json 변경)라 import 생략 — next/headers 사용으로 클라이언트 import 불가. 쿠키 SameSite=Lax. 역할은 rpc get_my_profile로 DB에서 판단. Proxy는 세션 갱신만"
         },
         "LOGIC-MATE-STATE": {
-          "status": "pending",
-          "finished_at": null,
-          "verify": null,
-          "note": null
+          "status": "completed",
+          "finished_at": "2026-10-11T21:23:12+09:00",
+          "verify": "npm run lint PASS · npm run typecheck PASS · node 실행 확인 10항목 PASS(KST 자정 경계, 종료일 당일 OPEN·다음날 CLOSED, 과거·역전 날짜 생성 불가, 글·요청 전이, 중복 요청, 날짜 변경 경고) · 정식 Unit 보류 — UNIT-MATE-STATE(W11)에서 검증 · Diff: src/lib/mates/state.ts",
+          "note": "참고: RLS 수정 정책은 작성자의 status 변경 방향(예: CLOSED→OPEN 재개)을 막지 않음. 화면은 canTransitionPost 규칙을 따르며 DELETED는 RLS에서 수정 불가"
         },
         "DB-ACCESS": {
-          "status": "pending",
-          "finished_at": null,
-          "verify": null,
-          "note": null
+          "status": "completed",
+          "finished_at": "2026-10-11T21:25:35+09:00",
+          "verify": "npm run lint PASS · npm run typecheck PASS · npm run build PASS · 원격 확인: FK 이름(mate_posts_owner_id_fkey, mate_applications_applicant_id_fkey) 일치, 목록 embed 쿼리·작성자 !inner 필터·travel_styles overlaps·app_settings 조회 anon 200 · 로그인 쓰기(요청·승인·차단·신고·설정 저장): 보류 — TEST-RLS-BASIC(W12)·E2E-MATE-AUTH(W12)에서 검증 · Diff: src/lib/db/* 6개",
+          "note": "공통 결과 타입(DbResult)·오류 변환은 새 파일을 만들 수 없어 profiles.ts에 둠. 차단 목록은 RLS가 상대 프로필을 숨겨 닉네임 없이 차단일만 표시 가능(COMP-SCR005-ACTIVITY 참고). 외부 URL 허용 호스트 검사는 LOGIC-OUTBOUND-URL(src/lib/outbound.ts) 소관"
         },
         "TECH-AUTH-CALLBACK": {
-          "status": "pending",
-          "finished_at": null,
-          "verify": null,
-          "note": null
+          "status": "completed",
+          "finished_at": "2026-10-11T21:26:32+09:00",
+          "verify": "npm run lint PASS · npm run typecheck PASS · npm run build PASS(/auth/callback 정적 페이지) · next start: /auth/callback 200, 처리 중 문구 렌더 · route.ts·use server 0건 · 실제 메일 링크 처리·리다이렉트: 보류 — MANUAL-CHECK(MAN-01, W13)에서 검증 · Diff: src/app/auth/callback/page.tsx",
+          "note": "PKCE code·token_hash(verifyOtp) 모두 처리, 브라우저 클라이언트가 이미 세션을 만든 경우 재교환하지 않음. 성공 시 /account?tab=profile(재설정은 ?tab=login&mode=reset), 실패 시 ?tab=login&error=link — /account 화면은 W10(SCR-005)에서 생김. useSearchParams는 Suspense 안"
         }
       }
     },
