@@ -3,7 +3,7 @@
 | 항목 | 내용 |
 |---|---|
 | 기준일 | 2026-10-11 |
-| 마지막 갱신 | 2026-10-11 — W05 completed (SCR-001 Preview 승인) |
+| 마지막 갱신 | 2026-10-12 — W06 completed (SCR-002 Preview 승인) |
 | 갱신 주체 | `/run-wave`가 Wave 실행·Checkpoint·resume이 끝날 때 갱신한다. `/release-check --record`가 FINAL을 갱신한다. 사람이 고쳐도 되지만, Task·Wave 상태의 정본은 `TASKS/WAVE_STATE.json`이다 |
 
 이 문서는 프로젝트 현재 상태를 한 장으로 요약한다. 다른 문서와 다르면 다음 정본을 따른다.
@@ -18,9 +18,9 @@
 | Harness Schema | `traveler-screen-route-v1` (`design-reference/SCREEN_ROUTE_CONTRACT.json`) |
 | Design Version | D-001 `1.0.0` LOCKED (2026-10-09), `design-reference/D-001/DESIGN.md` sha256 `6282ae1e…fcec4` |
 | Scope Mode | IMPLEMENT/EXCLUDED — 요구사항 114건 중 IMPLEMENT 88, EXCLUDED 26 (`docs/PROJECT_SCOPE.md` §9·§10, DEC-014) |
-| Current Wave | W05 completed(SCR-001 승인). 다음 Wave는 W06(SCR-002 대표 소개, 3개, PREVIEW) |
+| Current Wave | W06 completed(SCR-002 승인). 다음 Wave는 W07(SCR-003 1/2, 4개) |
 | Current Task | 없음 |
-| Completed Tasks | 24 / 61 (W01 1, W02 7, W03 7, W04 5, W05 4) |
+| Completed Tasks | 27 / 61 (W01 1, W02 7, W03 7, W04 5, W05 4, W06 3) |
 | Blocked Tasks | 0 (Task 단위 `blocked` 기록 없음). 착수 차단 6건은 §4 참고(W03부터 필요) |
 | Latest CI | 없음 — `.github/workflows/ci.yml` 미작성(SETUP-CI, W11). Git 원격 `origin` 연결됨(github.com/a01025915796-lily/free-traveler). 로컬: lint·typecheck·build PASS(2026-10-11, W01) |
 | Supabase State | 원격 테스트 프로젝트 free-traveler(ap-northeast-1) link 완료(DEC-019). 마이그레이션 0001(6개 테이블)·0002(RLS, 정책 18개) 적용, seed 적용(app_settings 2건). 비로그인 API 검사 12항목 기대대로. 테스트 계정 3개 미생성(`docs/checks/TEST_ACCOUNTS.md` 절차, W11 전) |
@@ -35,7 +35,7 @@
 | Checkpoint | Route | Page Owner | Wave | 확인 방법 | 상태 | 승인일 |
 |---|---|---|---|---|---|---|
 | SCR-001 | `/` | PAGE-SCR001 | W05 | Vercel Preview(연결 전에는 로컬 dev), Desktop 1440·Mobile 390 | APPROVED | 2026-10-11 |
-| SCR-002 | `/about` | PAGE-SCR002 | W06 | Vercel Preview(연결 전에는 로컬 dev), Desktop 1440·Mobile 390 | PENDING | - |
+| SCR-002 | `/about` | PAGE-SCR002 | W06 | Vercel Preview(연결 전에는 로컬 dev), Desktop 1440·Mobile 390 | APPROVED | 2026-10-12 |
 | SCR-003 | `/travel-tools` | PAGE-SCR003 | W08 | Vercel Preview(연결 전에는 로컬 dev), Desktop 1440·Mobile 390 | PENDING | - |
 | SCR-004 | `/mates` | PAGE-SCR004 | W09 | Vercel Preview(연결 전에는 로컬 dev), Desktop 1440·Mobile 390 | PENDING | - |
 | SCR-005 | `/account` | PAGE-SCR005 | W10 | Vercel Preview(연결 전에는 로컬 dev), Desktop 1440·Mobile 390 | PENDING | - |
@@ -71,9 +71,9 @@ Wave 번호는 `TASKS/WAVE_PLAN.md`(build_waves.py 생성) 기준이다. W01~W02
 
 ## 5. Next Action
 
-1. `/run-wave W06` (SCR-002 대표 소개, Preview 대기에서 멈춤).
-2. Deferred #8 사진 교체는 사용자와 여행지를 함께 보며 진행.
-3. W11 전까지 테스트 계정 3개 생성(`docs/checks/TEST_ACCOUNTS.md`).
+1. `/run-wave W07` (SCR-003 1/2).
+2. Deferred #6(대표 문구·SNS 값)과 #8(사진 교체)은 사용자 확인 필요.
+3. W11 전까지 테스트 계정 3개 생성.
 
 ## 6. 변경 이력
 
@@ -89,3 +89,5 @@ Wave 번호는 `TASKS/WAVE_PLAN.md`(build_waves.py 생성) 기준이다. W01~W02
 | 2026-10-11 | SCR-001 Preview 승인 → W05 completed. Deferred #8(사진 품질) 추가 | 사용자 승인, `/run-wave resume` |
 | 2026-10-11 | W04 completed(5 Task). 검색 query 키를 계약(days·kind)에 맞춤, 해외 추천 6곳 바르셀로나로 정정 | `/run-wave W04` |
 | 2026-10-11 | W02 completed(7 Task). DEC-018(Commons PD·CC0 사진), DATA-DESTINATIONS Expected Files에 `next.config.ts` 추가. Deferred #5~#7 추가 | `/run-wave W02` |
+| 2026-10-12 | W06 Task 3개 완료, SCR-002 PREVIEW 대기 | `/run-wave W06` |
+| 2026-10-12 | SCR-002 Preview 승인 → W06 completed | 사용자 승인 |

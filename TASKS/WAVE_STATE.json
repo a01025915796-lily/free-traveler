@@ -292,33 +292,33 @@
         "COMP-SCR002-COUNTRIES-GALLERY",
         "PAGE-SCR002"
       ],
-      "status": "pending",
+      "status": "completed",
       "checkpoint_required": true,
       "checkpoint_type": "preview",
-      "checkpoint_result": null,
-      "checkpoint_at": null,
+      "checkpoint_result": "approved",
+      "checkpoint_at": "2026-10-12T22:24:22+09:00",
       "prerequisites": null,
-      "started_at": null,
-      "finished_at": null,
+      "started_at": "2026-10-12T22:18:34+09:00",
+      "finished_at": "2026-10-12T22:24:22+09:00",
       "blocked_reason": null,
       "tasks": {
         "COMP-SCR002-PROFILE": {
-          "status": "pending",
-          "finished_at": null,
-          "verify": null,
-          "note": null
+          "status": "completed",
+          "finished_at": "2026-10-12T22:19:18+09:00",
+          "verify": "npm run lint PASS · npm run typecheck PASS · 렌더는 PAGE-SCR002 조립 후 확인(이 Wave) · Playwright 보류 — E2E-PUBLIC-SMOKE(W12) · Diff: src/components/about/ProfileHero.tsx, ContactLinks.tsx, ProfileStory.tsx, TravelTimeline.tsx",
+          "note": "지표 4개 영역(TravelStats)은 맡은 파일이 없어 ProfileHero.tsx에서 export. 문의·SNS는 값이 비어 있어 렌더링되지 않음(Deferred #6)"
         },
         "COMP-SCR002-COUNTRIES-GALLERY": {
-          "status": "pending",
-          "finished_at": null,
-          "verify": null,
-          "note": null
+          "status": "completed",
+          "finished_at": "2026-10-12T22:19:58+09:00",
+          "verify": "npm run lint PASS · npm run typecheck PASS · 렌더는 PAGE-SCR002 조립 후 확인(이 Wave) · Playwright 보류 — E2E-PUBLIC-SMOKE(W12) · Diff: src/components/about/CountryChipGroup.tsx, PhotoGallery.tsx, MemoryCard.tsx",
+          "note": "7번 영역(기억 4 + 추천 Chip 6 + CTA Banner)은 MemoryCard.tsx의 MemorySection으로 export. Gallery Mobile은 1장 + 이전/다음(44px) + n/8"
         },
         "PAGE-SCR002": {
-          "status": "pending",
-          "finished_at": null,
-          "verify": null,
-          "note": null
+          "status": "completed",
+          "finished_at": "2026-10-12T22:20:54+09:00",
+          "verify": "npm run lint PASS · npm run typecheck PASS · npm run build PASS(/about ○ 정적) · Chromium 확인(scratchpad 스크립트): 7개 영역 계약 순서, h1 1개, title, 지표 4(50+ Trips·30+ Countries·4개 권역·40곳), Timeline 7, 국가 Chip 30(링크 15), Gallery 8, 기억 Card 4, 추천 Chip 6, 빈 SNS 미렌더, 모바일 갤러리 이전/다음·n/8, 390/320 가로 넘침 0, 오류 0 · E2E-PUBLIC-SMOKE spec 없음: 보류 — W12 · Preview 승인 대기",
+          "note": "Server Component 정적 렌더. metadata title·description·canonical·OG(대표 사진)"
         }
       }
     },
