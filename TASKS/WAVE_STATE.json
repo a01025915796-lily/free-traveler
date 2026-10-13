@@ -332,39 +332,39 @@
         "LOGIC-CONTACT-DETECTION",
         "COMP-SCR003-SHELL"
       ],
-      "status": "pending",
+      "status": "completed",
       "checkpoint_required": false,
       "checkpoint_type": null,
       "checkpoint_result": null,
       "checkpoint_at": null,
       "prerequisites": null,
-      "started_at": null,
-      "finished_at": null,
+      "started_at": "2026-10-12T22:24:25+09:00",
+      "finished_at": "2026-10-12T22:27:57+09:00",
       "blocked_reason": null,
       "tasks": {
         "LOGIC-TRAVEL-DATES": {
-          "status": "pending",
-          "finished_at": null,
-          "verify": null,
-          "note": null
+          "status": "completed",
+          "finished_at": "2026-10-12T22:25:16+09:00",
+          "verify": "npm run lint PASS · npm run typecheck PASS · 임시 vitest 4묶음 PASS 후 삭제(출발 과거 차단·당일 귀국 허용·역전 차단, 체크아웃≤체크인 차단, 동행 과거 종료일 차단, 다른 국가 도시 차단, 국가 변경 시 지역 초기화, 2월 30일 거부, KST 기준) · 정식 Unit 보류 — UNIT-TRAVEL-DATES(W11) · Diff: src/lib/trip/validation.ts, src/lib/trip/regions.ts",
+          "note": "지역 = src/data 여행지 도시(slug 공유: ?dest, mate_posts.region_slug). 입력값은 함수 인자로만 · 재수정(W08 COMP-SCR003-FLIGHT 중): 오류 문장을 04 §6.3 표 문구에 맞춤"
         },
         "LOGIC-OUTBOUND-URL": {
-          "status": "pending",
-          "finished_at": null,
-          "verify": null,
-          "note": null
+          "status": "completed",
+          "finished_at": "2026-10-12T22:25:51+09:00",
+          "verify": "npm run lint PASS · npm run typecheck PASS · 임시 vitest 3묶음 PASS 후 삭제(기본 URL 통과, http·javascript·data·외부 호스트·유사 도메인·query·hash·userinfo·빈 값 거부, 잘못된 관리자 설정은 기본값으로 덮지 않고 오류) · 정식 Unit 보류 — UNIT-OUTBOUND-FAVORITES(W11) · Diff: src/lib/outbound.ts",
+          "note": "console.error는 종류·사유만 기록(입력값·URL 미기록). window.open noopener,noreferrer 또는 OUTBOUND_LINK_PROPS로 a 태그"
         },
         "LOGIC-CONTACT-DETECTION": {
-          "status": "pending",
-          "finished_at": null,
-          "verify": null,
-          "note": null
+          "status": "completed",
+          "finished_at": "2026-10-12T22:26:59+09:00",
+          "verify": "npm run lint PASS · npm run typecheck PASS · 임시 샘플셋(양성 25·음성 20, 작성자 구성) 탐지 25/25, 오탐 0/20 후 임시 파일 삭제 · 공식 기준 테스트셋(탐지율≥95%·오탐≤5%)은 UNIT-CONTACT-DETECTION(W11)에서 작성·검증 · Diff: src/lib/mates/contact-detection.ts",
+          "note": "전화(국내 휴대·유선·050/070/080, 국제 +), 이메일(골뱅이·(at)·닷 변형 포함), 메신저 키워드+ID, @핸들, 오픈채팅·t.me·instagram 등 링크. 날짜·금액·인원 숫자는 제외. 안내문은 값 자체를 되풀이하지 않음"
         },
         "COMP-SCR003-SHELL": {
-          "status": "pending",
-          "finished_at": null,
-          "verify": null,
-          "note": null
+          "status": "completed",
+          "finished_at": "2026-10-12T22:27:57+09:00",
+          "verify": "npm run lint PASS · npm run typecheck PASS · npm run build PASS · 렌더·탭 전환은 PAGE-SCR003(W08 Preview)에서 확인 · Playwright 보류 — E2E-TRAVEL-TOOLS(W12) · Diff: src/components/tools/ToolsIntro.tsx, ToolsTabs.tsx, NonTransferNotice.tsx, TipCard.tsx",
+          "note": "ToolsTabs는 세 패널을 모두 마운트하고 hidden으로 전환(탭별 입력 상태 유지). URL은 ?tab=만(동행 탭에서만 ?edit 유지). 탭 바는 Header 아래 sticky. 5번 영역은 NonTransferNotice.tsx의 BeforeYouGoSection"
         }
       }
     },
@@ -378,39 +378,39 @@
         "COMP-SCR003-MATE-COMPOSE",
         "PAGE-SCR003"
       ],
-      "status": "pending",
+      "status": "completed",
       "checkpoint_required": true,
       "checkpoint_type": "preview",
-      "checkpoint_result": null,
-      "checkpoint_at": null,
+      "checkpoint_result": "approved",
+      "checkpoint_at": "2026-10-13T19:30:20+09:00",
       "prerequisites": null,
-      "started_at": null,
-      "finished_at": null,
+      "started_at": "2026-10-13T08:28:17+09:00",
+      "finished_at": "2026-10-13T19:30:20+09:00",
       "blocked_reason": null,
       "tasks": {
         "COMP-SCR003-FLIGHT": {
-          "status": "pending",
-          "finished_at": null,
-          "verify": null,
-          "note": null
+          "status": "completed",
+          "finished_at": "2026-10-13T08:29:54+09:00",
+          "verify": "npm run lint PASS · npm run typecheck PASS · 렌더·입력·외부 이동은 PAGE-SCR003 조립 후 이 Wave에서 브라우저 확인 · Playwright 보류 — E2E-TRAVEL-TOOLS(W12) · Diff: src/components/tools/TripConditionForm.tsx, TripSummaryCard.tsx, OutboundButton.tsx",
+          "note": "입력값은 TripPlanner React state에만(URL·저장소·서버·로그 없음). 네트워크는 app_settings 읽기뿐. 외부 이동은 a 태그(new tab, noopener noreferrer, query 없음). 설정 조회 실패 시 기본 상수, 설정값이 허용목록 밖이면 danger Alert+다시 시도. TripPlanner·FlightPanel export(숙소 재사용) · 재수정(PAGE-SCR003 중): 계약 영역 id(condition-form·summary-outbound)를 붙이도록 TripPlanner·FlightPanel에 선택 prop sectionIds 추가"
         },
         "COMP-SCR003-HOTEL": {
-          "status": "pending",
-          "finished_at": null,
-          "verify": null,
-          "note": null
+          "status": "completed",
+          "finished_at": "2026-10-13T08:30:08+09:00",
+          "verify": "npm run lint PASS · npm run typecheck PASS · 렌더·탭 상태 분리는 PAGE-SCR003 조립 후 이 Wave에서 브라우저 확인 · Playwright 보류 — E2E-TRAVEL-TOOLS(W12) · Diff: src/components/tools/HotelPanel.tsx",
+          "note": "TripPlanner(hotel 모드) 재사용, 별도 state 인스턴스로 항공 탭과 분리 · 재수정(PAGE-SCR003 중): sectionIds prop 전달"
         },
         "COMP-SCR003-MATE-COMPOSE": {
-          "status": "pending",
-          "finished_at": null,
-          "verify": null,
-          "note": null
+          "status": "completed",
+          "finished_at": "2026-10-13T08:32:00+09:00",
+          "verify": "npm run lint PASS · npm run typecheck PASS · npm run build PASS · 비회원 화면은 PAGE-SCR003 조립 후 브라우저 확인 예정, 로그인·작성·수정·Modal: 보류 — E2E-MATE-AUTH(W12, 테스트 계정 필요) · Diff: src/components/tools/MateAuthGate.tsx, MatePostForm.tsx, SafetyGuideCard.tsx",
+          "note": "권한 게이트(비회원·성인 확인 전·가능), 작성/수정(?edit 작성자 확인·승인자 있으면 날짜 변경 확인 Modal), 연락처 탐지(제목·선호·설명), 오류 요약 role=alert(필드 링크), 제출 중 '올리는 중…', 실패 Alert, 완료 시 /mates?post=id + Toast. 동의 시 safety_agreed_at·policy_version은 createMatePost가 저장. 여행 스타일 선택지 12개(STYLE_OPTIONS)"
         },
         "PAGE-SCR003": {
-          "status": "pending",
-          "finished_at": null,
-          "verify": null,
-          "note": null
+          "status": "completed",
+          "finished_at": "2026-10-13T08:33:39+09:00",
+          "verify": "npm run lint PASS · npm run typecheck PASS · npm run build PASS(/travel-tools ○) · Chromium 확인(scratchpad 스크립트): 탭 3개·기본 항공편, 영역 id 5개, 빈 제출 필드 오류 4개·요약 카드 '입력을 확인해 주세요'·이동 버튼 비활성, 과거 출발일 오류, 요약(국가·도시·날짜·4박 5일), 외부 링크 https://www.google.com/travel/flights _blank noopener noreferrer, 체크아웃=체크인 오류, 탭 전환 후 항공 상태 유지·URL은 ?tab만, 입력값 localStorage·sessionStorage·cookie·네트워크·URL 0건, 동행 탭 비회원 안내·로그인 next 링크, 390/320 넘침 0, 오류 0 · E2E-TRAVEL-TOOLS·E2E-MATE-AUTH spec 없음: 보류 — W12 · Preview 승인 대기",
+          "note": "세 탭 패널 상시 마운트(hidden 전환)로 탭별 상태 분리. 숙소 패널 영역 id는 중복 방지를 위해 -hotel 접미사. 이 화면에 서버 API 없음"
         }
       }
     },
